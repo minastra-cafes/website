@@ -1,8 +1,9 @@
 const imagensQuemSomos = [
     "images/sobre/colhedeira.webp",   // gif
+    "images/sobre/serras_cafe.png",
+    "images/sobre/helio.png",
     "images/sobre/cafezal_em_flor.png",
-    "images/sobre/fazenda_lagoa.png",
-    "images/sobre/helio.jpeg",
+    "images/sobre/pacotes_minastra.png",
 ];
 
 const quemSomosImg = document.getElementById("quemSomosImg");
