@@ -1,10 +1,44 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Minastra Cafés",
+    "url": "https://minastra-cafes.github.io/website/",
+    "logo": "https://minastra-cafes.github.io/website/logo.png",
+    "image": "https://minastra-cafes.github.io/website/images/cafes_na_flor.jpeg",
+    "description": "Minastra Cafés: cafés especiais 100% arábica com torra artesanal, direto de Alfenas (MG).",
+    "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Alfenas",
+        "addressRegion": "MG",
+        "addressCountry": "BR"
+    },
+    "areaServed": "BR",
+    "sameAs": [
+        "https://www.instagram.com/minastra_cafes"
+    ],
+    "telephone": "+55-35-99913-1028"
+}
+</script>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Minastra Cafés</title>
+    <meta
+        name="description"
+        content="Minastra Cafés: cafés especiais 100% arábica com torra artesanal, direto do Sítio Lagoa nas serras de Alfenas (Sul de Minas). Compre via WhatsApp."
+    />
+
     <link rel="icon" type="image/png" href="favicon.png">
+    <link
+    rel="canonical"
+    href="https://minastra-cafes.github.io/website/"
+    >
     
     <script src="scripts/carrossel_header.js" defer></script>
     <script src="scripts/carrossel_sobre.js" defer></script>
@@ -35,12 +69,6 @@
         .btn-primary:hover {
             opacity: 0.9;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-        /* Estilo para a imagem de fundo do Hero */
-        #hero {
-            background-image: url('https://placehold.co/1000x800/5A392F/FFFFFF?text=Minastra+Caf%C3%A9');
-            background-size: cover;
-            background-position: center;
         }
         /* Estilo para o ícone do Menu (Mobile) */
         .menu-icon {
@@ -315,10 +343,10 @@
                 </div>
 
 
-                <!-- Card de Produto 3: Edição Clássica (Econômico) -->
+                <!-- Card de Produto 3: Edição Clássica  -->
                 <div class="bg-white rounded-xl shadow-2xl overflow-hidden transform hover:scale-[1.02] transition duration-300">
                     <!-- Placeholder Image -->
-                    <img src="images/produtos/ouro_graos.jpeg" alt="Pacote de Café Edição Clássica Minastra" class="w-full h-64 object-cover">
+                    <img src="images/produtos/ouro_graos.jpeg" alt="Pacote de Café Edição Clássica Minastra" loading="lazy" class="w-full h-64 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-bold text-[var(--color-primary)] mb-2">Ouro em Grãos</h3>
                         <p class="text-sm text-gray-500 mb-4">Torra Média Clara - Grão</p>
@@ -366,7 +394,8 @@
                     <img 
                         id="quemSomosImg" 
                         src="images/sobre/cafezal_em_flor.png" 
-                        alt="Foto da fazenda Minastra e equipe." 
+                        alt="Foto da fazenda Minastra e equipe."
+                        loading="lazy"
                         class="w-full h-auto rounded-xl shadow-2xl object-cover transition-opacity duration-1000 ease-in-out scale-100"
                     >
                 </div>
@@ -388,7 +417,7 @@
 
             <div class="rounded-lg shadow-2xl overflow-hidden    border-[2px] border-gray-600 border-solid">
 
-                <img src="images/instagram.png" alt="mockup instagram minastra" class="brightness-90 w-full h-56 md:h-64 object-cover">
+                <img src="images/instagram.png" alt="mockup instagram minastra" loading="lazy" class="brightness-90 w-full h-56 md:h-64 object-cover">
                 
                 <div class="p-5 md:p-6">
                     <h3 class="text-2xl font-bold text-[var(--color-primary)] mb-1 text-center">Instagram Oficial</h3>
