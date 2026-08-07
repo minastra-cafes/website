@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minastra Cafés Especiais</title>
+
+    <meta
+        name="description"
+        content="Minastra Cafés: cafés especiais 100% arábica com torra artesanal, direto do Sítio Lagoa nas serras de Alfenas (Sul de Minas). Compre via WhatsApp."
+    />
+
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link
+    rel="canonical"
+    href="https://minastra-cafes.github.io/website/"
+    >
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="scripts/carrossel_origem.js" defer></script>
+    <script src="scripts/carrossel_processo.js" defer></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              minastra: {
+                espresso: '#2b1d16',
+                brown: '#6f2f1f',
+                clay: '#9b5b37',
+                gold: '#caa052',
+                cream: '#f7efe4',
+                paper: '#fff8ed',
+                leaf: '#183f2a',
+                moss: '#2e5a38',
+              },
+            },
+            fontFamily: {
+              serifbrand: ['Georgia', 'Times New Roman', 'serif'],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Alegreya+SC:ital,wght@0,400;0,500;0,700;0,800;1,400;1,500;1,700;1,800&display=swap');
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #f7efe4;
+        }
+        .ornament-corner {
+            position: absolute;
+            width: 56px;
+            height: 56px;
+            border-color: #6f2f1f;
+            opacity: .42;
+        }
+        .grain-bg {
+            background-image:
+            radial-gradient(circle at 18% 12%, rgba(202,160,82,.18), transparent 22%),
+            radial-gradient(circle at 88% 10%, rgba(24,63,42,.12), transparent 20%),
+            linear-gradient(180deg, #fff8ed 0%, #f7efe4 100%);
+        }
+        .alegreya-sc {
+            font-family: "Alegreya SC", serif;
+            font-weight: 500;
+            font-style: normal;
+        }
+        .alegreya-sans-sc-light {
+            font-family: "Alegreya Sans SC", sans-serif;
+            font-weight: 300;
+            font-style: normal;
+            letter-spacing: 0.05em;
+        }
+    </style>
+  </head>
+
+    <body class="min-h-screen bg-minastra-cream text-minastra-espresso">
+        <section id="inicio" class="relative min-h-[100svh] overflow-hidden bg-minastra-espresso text-minastra-paper">
+            <img
+                src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1600&q=80"
+                alt="Grãos de café"
+                class="absolute inset-0 h-full w-full object-cover opacity-35"
+            />
+            <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(43,29,22,.42)_0%,rgba(43,29,22,.78)_44%,rgba(43,29,22,.97)_100%)]"></div>
+            <div class="absolute inset-x-4 top-4 bottom-4 border border-minastra-gold/45 pointer-events-none"></div>
+            <div class="absolute inset-x-7 top-7 bottom-7 border border-minastra-gold/20 pointer-events-none"></div>
+
+            <div class="relative mx-auto flex flex-col min-h-[100svh] max-w-md px-6 py-7 sm:max-w-xl md:max-w-2xl lg:max-w-6xl lg:px-10">
+                <header class="flex items-center justify-between px-3">
+                    <a href="#inicio" class="flex items-center gap-3">
+                        <div class="flex h-11 w-11 items-center justify-center rounded-full border border-minastra-gold/60 bg-minastra-paper text-minastra-brown shadow-lg">
+                            <img src="logo.png" alt="Logo Minastra." class="w-[45px] h-auto rounded-xl object-cover">
+                        </div>
+                        <p class="text-[24px] mt-1 alegreya-sc tracking-wider">MINASTRA</p>
+                    </a>
+
+                    <a href="#produtos" class="rounded-full border border-minastra-gold/60 bg-minastra-gold/10 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-minastra-paper backdrop-blur-sm">
+                        Comprar
+                    </a>
+                </header>
+
+                <div class="my-auto px-3">
+                    <h1 class="font-serifbrand text-[3.35rem] font-bold leading-[0.92] tracking-[0.03em] text-minastra-gold sm:text-7xl lg:text-8xl">
+                        Minastra
+                    </h1>
+                    <p class="mt-2 text-[14px] font-semibold uppercase tracking-[0.48em] text-minastra-paper/85">
+                        Cafés Especiais
+                    </p>
+
+                    <p class="mt-4 max-w-lg text-[16px] leading-7 text-minastra-paper/78 sm:text-lg sm:leading-8 alegreya-sans-sc-light">
+                        O sabor autêntico do Café de origem, feito com Paixão. Produzido artesanalmente no Sítio Lagoa, nas montanhas gerais.
+                    </p>
+    
+                    <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+                        <a href="#produtos" class="rounded-full bg-minastra-gold px-6 py-3 text-center text-sm font-bold uppercase tracking-[0.18em] text-minastra-espresso">
+                        Ver produtos
+                        </a>
+                        <a href="#sobre" class="rounded-full border border-minastra-gold/55 px-6 py-3 text-center text-sm font-bold uppercase tracking-[0.18em] text-minastra-paper">
+                        Nossa origem
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre" class="grain-bg relative overflow-hidden px-8 py-12 sm:py-20 lg:py-24">
+            <div class="ornament-corner left-3 top-4 lg:left-5 lg:top-5 border-l-2 border-t-2"></div>
+            <div class="ornament-corner right-3 top-4 lg:right-5 lg:top-5 border-r-2 border-t-2"></div>
+
+            <!-- <div class="relative overflow-hidden border-2 border-minastra-gold px-7 py-8 sm:px-10 lg:px-14 lg:py-16">
+            <div class="absolute left-3 top-3 h-14 w-14 border-l-2 border-t-2 border-minastra-gold"></div>
+            <div class="absolute right-3 top-3 h-14 w-14 border-r-2 border-t-2 border-minastra-gold"></div>
+            <div class="absolute bottom-3 left-3 h-14 w-14 border-b-2 border-l-2 border-minastra-gold"></div>
+            <div class="absolute bottom-3 right-3 h-14 w-14 border-b-2 border-r-2 border-minastra-gold"></div> -->
+
+            <div class="mx-auto max-w-md sm:max-w-xl md:max-w-2xl lg:max-w-6xl">
+                <p class="text-[13px] font-bold uppercase tracking-[0.34em] text-minastra-brown">
+                    Quem somos
+                </p>
+                <div class="mt-4 grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+                    <h2 class="font-serifbrand text-4xl font-bold leading-[1.02] tracking-[-0.03em] text-minastra-brown sm:text-5xl lg:text-6xl">
+                        Das montanhas gerais para todo o Brasil.
+                    </h2>
+                    <p class="text-[15px] leading-7 text-[#654638] sm:text-lg sm:leading-8">
+                        A Minastra nasceu para levar o <strong>verdadeiro café brasileiro</strong>, produzido artesanalmente no Sítio Lagoa nas serras de Alfenas MG, para perto de quem valoriza origem, tradição e sabor de verdade.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-minastra-espresso px-4 py-4">
+            <div class="mx-auto grid max-w-md grid-cols-2 gap-3 sm:max-w-xl md:max-w-2xl lg:max-w-6xl lg:grid-cols-4">
+                <div class="relative col-span-2 overflow-hidden rounded-[1.6rem] lg:col-span-2">
+                    <img src="images/sobre/serras_cafe.png" alt="Montanhas e lavoura" class="h-64 w-full object-cover sm:h-80 lg:h-96" />
+                    <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(43,29,22,.00),rgba(43,29,22,.45))]"></div>
+                    <div class="absolute bottom-5 left-5 right-5">
+                        <p class="font-serifbrand text-2xl font-semibold leading-none text-minastra-paper sm:text-3xl ">
+                        Sou das Minas de Ouro
+                        </p>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-[1.6rem]  sm:h-80 lg:h-96 border border-minastra-gold">
+                    <img src="/images/more/cafe-cereja.jpg" alt="Grãos de café" class="h-full w-full object-cover" />
+                    <div class="absolute inset-0 bg-minastra-brown/25"></div>
+                    <div class="absolute bottom-4 left-3 right-3">
+                        <p class="text-[13px] font-bold uppercase tracking-[0.2em] text-minastra-paper">Catuaí Vermelho</p>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-[1.6rem]  sm:h-80 lg:h-96 border border-minastra-gold">
+                    <img src="/images/more/new-target.png" alt="Logo Dourada Minastra" class="w-full h-full object-cover">
+                    <div class="absolute bottom-4 left-4 right-4">
+                        <p class="text-[13px] font-bold uppercase tracking-[0.2em] text-minastra-paper">100% arábica</p>
+                    </div>
+                </div>
+
+                <!--
+                <div class="relative overflow-hidden rounded-[1.6rem] bg-minastra-gold border border-minastra-gold sm:h-80 lg:h-96">
+                    <div class="absolute -right-8 -top-8 h-28 w-28 rounded-full border border-minastra-espresso/20"></div>
+                    comentado <p class="text-[10px] font-bold uppercase tracking-[0.26em]">Minastra</p>
+                    <p class="mt-8 font-serifbrand text-4xl font-bold leading-none">Linha Ouro</p>
+                    <p class="mt-4 text-sm font-semibold leading-6">Torra média clara com aroma de chocolate e notas suaves de mel.</p> comentado
+                    <img src="/new-target.png" class="w-full h-full object-cover">
+                </div> -->
+                
+            </div>
+        </section>
+
+
+
+
+
+        <section id="produtos" class="bg-minastra-cream px-6 py-14 sm:py-20 lg:py-24">
+            <div class="mx-auto max-w-md sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-7xl">
+                <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+                    <div class="max-w-3xl">
+                        <p class="text-[11px] font-bold uppercase tracking-[0.34em] text-minastra-brown">
+                            Produtos
+                        </p>
+                        <h2 class="mt-4 font-serifbrand text-4xl font-bold leading-[1.02] tracking-[-0.03em] text-minastra-espresso sm:text-5xl lg:text-6xl">
+                            Nossa linha exclusiva.
+                        </h2>
+                        <p class="mt-5 text-[15px] leading-7 text-[#654638] sm:text-lg sm:leading-8">
+                            Escolha seu café preferido e aproveite! Do sul de Minas para a sua xícara.
+                        </p>
+                    </div>
+                    <a href="#comprar" class="inline-flex rounded-full bg-minastra-espresso px-6 py-4 text-sm font-bold uppercase tracking-[0.16em] text-minastra-paper">
+                        Comprar no WhatsApp
+                    </a>
+                </div>
+
+                <div class="mt-9 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+                <article class="overflow-hidden rounded-[1.8rem] border-2 border-minastra-brown/20 bg-minastra-paper shadow-[0_20px_50px_rgba(43,29,22,.08)]">
+                    <div class="bg-minastra-espresso p-4">
+                        <img src="images/produtos/new_bronze.png" alt="Pacote de café bronze moído" class="h-72 xl:h-80 w-full rounded-[1.2rem] object-cover" />
+                    </div>
+                    <div class="p-5">
+                        <div class="mb-4 inline-flex bg-minastra-gold px-3 py-1 text-[10px] font-bold uppercase tracking-[0.22em] text-minastra-espresso">
+                            Torra Média Escura
+                        </div>
+                        <h3 class="font-serifbrand text-3xl font-bold leading-tight text-minastra-brown">Linha Bronze</h3>
+                        <p class="mt-3 text-sm leading-6 text-[#654638]">Sabor intenso e encorpado do café tradicional, mas com um toque mais doce e um perfil que combina com o dia a dia — o café perfeito para as manhãs.</p>
+                        <div class="mt-5 flex items-center justify-between border-t border-minastra-brown/15 pt-4">
+                            <span class="text-sm font-bold uppercase tracking-[0.16em] text-minastra-brown">500g</span>
+                            <span class="font-serifbrand text-3xl font-bold text-minastra-espresso">R$ 39<span class="text-2xl">,00</span></span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="overflow-hidden rounded-[1.8rem] border-2 border-minastra-gold/65 bg-minastra-espresso text-minastra-paper shadow-[0_24px_60px_rgba(43,29,22,.16)]">
+                    <div class="bg-minastra-gold/5 p-4">
+                        <img src="/images/produtos/new_ouro.jpg" alt="Grãos de café" class="h-72 xl:h-80 w-full rounded-[1.2rem] object-cover" />
+                    </div>
+                    <div class="p-5">
+                        <div class="mb-4 inline-flex bg-minastra-gold px-3 py-1 text-[10px] font-bold uppercase tracking-[0.22em] text-minastra-espresso">
+                            Torra Média Clara
+                        </div>
+                        <h3 class="font-serifbrand text-3xl font-bold leading-tight text-minastra-gold">Linha Ouro</h3>
+                        <p class="mt-3 text-sm leading-6 text-minastra-paper/80">Aroma marcante de chocolate e sabor naturalmente doce, com notas suaves de mel. Um café leve e envolvente para quem aprecia suavidade e frescor.</p>
+                        <div class="mt-5 flex items-center justify-between border-t border-minastra-gold/25 pt-4">
+                            <span class="text-sm font-bold uppercase tracking-[0.16em] text-minastra-gold">500g</span>
+                            <span class="font-serifbrand text-3xl font-bold text-minastra-paper/80">R$ 48<span class="text-2xl">,00</span></span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="overflow-hidden rounded-[1.8rem] border-2 border-minastra-brown/20 bg-minastra-paper shadow-[0_20px_50px_rgba(43,29,22,.08)] ">
+                    <div class="bg-minastra-espresso p-4">
+                        <img src="/images/produtos/ouro_grao.jpg" alt="Café servido" class="h-72 xl:h-80 w-full rounded-[1.2rem] object-cover" />
+                    </div>
+                    <div class="p-5">
+                        <div class="mb-4 inline-flex bg-minastra-gold px-3 py-1 text-[10px] font-bold uppercase tracking-[0.22em] text-minastra-espresso">
+                            Média Clara · Grão
+                        </div>
+                        <h3 class="font-serifbrand text-3xl font-bold leading-tight text-minastra-brown">Ouro em Grãos</h3>
+                        <p class="mt-3 text-sm leading-6 text-[#654638]">As mesmas notas doces de chocolate, mel e frescor da versão moída. Em grãos para quem prefere moer na hora e preservar toda a frescura e aroma do café.</p>
+                        <div class="mt-5 flex items-center justify-between border-t border-minastra-brown/30 pt-4">
+                            <span class="text-sm font-bold uppercase tracking-[0.16em] text-minastra-brown">500g</span>
+                            <span class="font-serifbrand text-3xl font-bold text-minastra-espresso">R$ 48<span class="text-2xl">,00</span></span>
+                        </div>
+                    </div>
+                </article>
+
+
+                <!-- <article class="overflow-hidden rounded-[1.8rem] border-2 border-minastra-brown/30 bg-minastra-paper text-minastra-paper shadow-[0_24px_60px_rgba(43,29,22,.16)]">
+                    <div class="bg-minastra-leaf p-4">
+                        <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1100&q=80" alt="Grãos de café" class="h-72 xl:h-80 w-full rounded-[1.2rem] object-cover" />
+                    </div>
+                    <div class="p-5">
+                        <div class="mb-4 inline-flex bg-minastra-leaf px-3 py-1 text-[10px] font-bold uppercase tracking-[0.22em] text-minastra-paper">
+                            Torra Média Clara
+                        </div>
+                        <h3 class="font-serifbrand text-3xl font-bold leading-tight text-minastra-brown">Linha Ouro</h3>
+                        <p class="mt-3 text-sm leading-6 text-[#654638]">Aroma marcante de chocolate e sabor naturalmente doce, com notas suaves de mel. Um café leve e envolvente para quem aprecia suavidade e frescor.</p>
+                        <div class="mt-5 flex flex-col gap-1 justify-between border-t border-minastra-leaf pt-4">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm font-bold uppercase tracking-[0.16em] text-minastra-espresso">250g</span>
+                                <span class="font-serifbrand text-2xl font-bold text-minastra-leaf">R$ 25<span class="text-2xl">,00</span></span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm font-bold uppercase tracking-[0.16em] text-minastra-espresso">500g</span>
+                                <span class="font-serifbrand text-2xl font-bold text-minastra-leaf">R$ 48<span class="text-2xl">,00</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </article> -->
+
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+
+        <section id="origem" class="bg-minastra-paper px-6 py-14 sm:py-20 lg:py-24">
+            <div class="mx-auto max-w-md sm:max-w-xl md:max-w-2xl lg:max-w-6xl">
+                <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-14">
+                <div>
+                    <p class="text-[11px] font-bold uppercase tracking-[0.34em] text-minastra-brown">
+                    Origem
+                    </p>
+                    <h2 class="mt-4 font-serifbrand text-4xl font-bold leading-[1.02] tracking-[-0.03em] text-minastra-espresso sm:text-5xl lg:text-6xl">
+                    De onde vem o café Minastra?
+                    </h2>
+                    <p class="mt-5 text-[15px] leading-7 text-[#654638] sm:text-lg sm:leading-8">
+                    Vem de Alfenas, do Sul de Minas, de uma terra que respira café. Cada pacote carrega a paisagem, o cuidado e a história de uma produção familiar feita em pequena escala.
+                    </p>
+                </div>
+
+                <div class="relative overflow-hidden rounded-[2rem] border-[5px] border-minastra-cream bg-minastra-cream shadow-[0_24px_60px_rgba(43,29,22,.12)]">
+                    <!-- <img src="/images/localizacao_minastra.png" alt="Paisagem de montanhas" class="h-[280px] w-full object-cover sm:h-[410px]" /> -->
+                    <img 
+                        id="origemImg" 
+                        src="/images/sobre/localizacao_minastra.jpg" 
+                        alt="Foto do cafezal, localização e paisagens."
+                        loading="lazy"
+                        class="w-full h-auto rounded-xl shadow-2xl object-cover transition-opacity duration-1000 ease-in-out scale-100"
+                    >
+                    <!-- <div class="absolute left-4 top-4 rounded-full bg-minastra-paper px-4 py-2 text-[10px] font-bold uppercase tracking-[0.22em] text-minastra-brown">
+                    Alfenas - MG
+                    </div> -->
+                </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="processo" class="bg-minastra-leaf px-6 py-14 text-minastra-paper sm:py-20 lg:py-24">
+        <div class="mx-auto max-w-md sm:max-w-xl md:max-w-2xl lg:max-w-6xl">
+            <div class="grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-14">
+            <div class="relative overflow-hidden rounded-[2rem] border border-minastra-gold/25">
+                <img 
+                    id="quemSomosImg" 
+                    src="images/sobre/helio.jpeg" 
+                    alt="Foto do cafezal e do senhor Hélio Gomes."
+                    loading="lazy"
+                    class="w-full h-auto rounded-xl shadow-2xl object-cover transition-opacity duration-1000 ease-in-out scale-100"
+                >
+                <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(24,63,42,.00),rgba(24,63,42,.4))]"></div>
+            </div>
+
+            <div>
+                <p class="text-[11px] font-bold uppercase tracking-[0.34em] text-minastra-gold">
+                Processo
+                </p>
+                <h2 class="mt-4 font-serifbrand text-4xl font-bold leading-[1.02] tracking-[-0.03em] sm:text-5xl lg:text-6xl">
+                Feito por mãos que conhecem o tempo do café.
+                </h2>
+                <p class="mt-5 text-[15px] leading-7 text-minastra-paper/78 sm:text-lg sm:leading-8">
+                Cultivado, colhido e torrado com carinho. A Minastra respeita cada etapa para preservar aroma, doçura e intensidade. Cada grão da variedade Catuaí IAC 144 reflete o cuidado e a excelência que definem a Minastra.
+                </p>
+            </div>
+            </div>
+        </div>
+        </section>
+
+
+
+
+
+        <section id="instagram" class="bg-minastra-paper px-6 py-14 sm:py-20 lg:py-24">
+        <div class="mx-auto max-w-md sm:max-w-xl md:max-w-2xl lg:max-w-6xl">
+            <div class="grid gap-8 lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:gap-14">
+            <div>
+                <p class="text-[11px] font-bold uppercase tracking-[0.34em] text-minastra-brown">
+                Instagram
+                </p>
+                <h2 class="mt-4 font-serifbrand text-4xl font-bold leading-[1.02] tracking-[-0.03em] text-minastra-espresso sm:text-5xl lg:text-6xl">
+                O sabor que só Minas sabe fazer.
+                </h2>
+                <p class="mt-5 text-[15px] leading-7 text-[#654638] sm:text-lg sm:leading-8">
+                No feed, a Minastra fala de origem, preparo, clientes e bastidores. Trouxemos essa mesma sensação para a página: próxima, artesanal e brasileira.
+                </p>
+                <a href="#" class="mt-6 inline-flex rounded-full border-2 border-minastra-brown px-6 py-3 text-sm font-bold uppercase tracking-[0.16em] text-minastra-brown">
+                Conheça o Instagram
+                </a>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 rounded-[1.6rem] bg-minastra-espresso p-2 shadow-[0_24px_60px_rgba(43,29,22,.16)]">
+                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80" class="aspect-square rounded-xl object-cover" alt="Post inspiração montanhas" />
+                <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=600&q=80" class="aspect-square rounded-xl object-cover" alt="Post inspiração café" />
+                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80" class="aspect-square rounded-xl object-cover" alt="Post inspiração preparo" />
+                <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=600&q=80" class="aspect-square rounded-xl object-cover" alt="Post inspiração produto" />
+                <div class="flex aspect-square items-center justify-center rounded-xl bg-minastra-gold p-3 text-center font-serifbrand text-xl font-bold leading-tight text-minastra-espresso">Linha<br/>Ouro</div>
+                <img src="https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?auto=format&fit=crop&w=600&q=80" class="aspect-square rounded-xl object-cover" alt="Post inspiração mãos" />
+            </div>
+            </div>
+        </div>
+        </section>
+
+        <section id="comprar" class="bg-minastra-espresso px-6 py-14 text-minastra-paper sm:py-20 lg:py-24">
+        <div class="mx-auto max-w-md sm:max-w-xl md:max-w-2xl lg:max-w-6xl">
+            <div class="relative overflow-hidden border-2 border-minastra-gold/55 bg-[#241711] px-6 py-10 sm:px-10 lg:px-14 lg:py-16">
+            <div class="absolute left-3 top-3 h-14 w-14 border-l-2 border-t-2 border-minastra-gold/60"></div>
+            <div class="absolute right-3 top-3 h-14 w-14 border-r-2 border-t-2 border-minastra-gold/60"></div>
+            <div class="absolute bottom-3 left-3 h-14 w-14 border-b-2 border-l-2 border-minastra-gold/60"></div>
+            <div class="absolute bottom-3 right-3 h-14 w-14 border-b-2 border-r-2 border-minastra-gold/60"></div>
+
+            <div class="relative max-w-3xl">
+                <p class="text-[11px] font-bold uppercase tracking-[0.34em] text-minastra-gold">
+                Compre no site, de Alfenas para todo o Brasil
+                </p>
+                <h2 class="mt-4 font-serifbrand text-4xl font-bold leading-[1.02] tracking-[-0.03em] text-minastra-gold sm:text-5xl lg:text-6xl">
+                Escolha seu café e receba em casa.
+                </h2>
+                <p class="mt-5 text-[15px] leading-7 text-minastra-paper/78 sm:text-lg sm:leading-8">
+                Queremos que o café Minastra chegue até você com a mesma sensação de cuidado que existe na produção.
+                </p>
+                <a href="#" class="mt-7 inline-flex rounded-full bg-minastra-gold px-7 py-4 text-sm font-bold uppercase tracking-[0.18em] text-minastra-espresso">
+                Fazer pedido pelo WhatsApp
+                </a>
+            </div>
+            </div>
+        </div>
+        </section>
+
+        <footer class="bg-minastra-espresso px-6 pb-8 text-center text-sm text-minastra-paper/60">
+        <p>© 2026 Minastra Cafés Especiais</p>
+        <p class="mt-2">Simples. Puro. Intenso.</p>
+        </footer>
+    </body>
+</html>
