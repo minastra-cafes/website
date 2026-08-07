@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Conheça os cafés especiais Minastra, escolha o peso e faça seu pedido."
+    />
+    <title>Produto | Minastra Cafés Especiais</title>
+
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              minastra: {
+                espresso: '#2b1d16',
+                brown: '#6f2f1f',
+                clay: '#9b5b37',
+                gold: '#caa052',
+                cream: '#f7efe4',
+                paper: '#fff8ed',
+                leaf: '#183f2a',
+                moss: '#2e5a38',
+              },
+            },
+            fontFamily: {
+              serifbrand: ['Georgia', 'Times New Roman', 'serif'],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Alegreya+SC:wght@400;500;700&display=swap');
+
+      body {
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      .alegreya-sc {
+        font-family: "Alegreya SC", serif;
+      }
+
+      .alegreya-sans-sc {
+        font-family: "Alegreya Sans SC", sans-serif;
+      }
+
+      .grain-bg {
+        background-image:
+          radial-gradient(circle at 18% 12%, rgba(202, 160, 82, 0.18), transparent 22%),
+          radial-gradient(circle at 88% 10%, rgba(24, 63, 42, 0.12), transparent 20%),
+          linear-gradient(180deg, #fff8ed 0%, #f7efe4 100%);
+      }
+    </style>
+  </head>
+
+  <body class="min-h-screen bg-minastra-cream text-minastra-espresso">
+    <header class="relative overflow-hidden border-b border-minastra-gold/30 bg-minastra-espresso text-minastra-paper">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(202,160,82,.14),transparent_40%)]"></div>
+
+      <div class="relative mx-auto max-w-7xl px-6 py-4 sm:px-8 lg:px-10">
+        <nav class="flex items-center justify-between" aria-label="Navegação principal">
+          <a href="index2.html#inicio" class="flex items-center gap-3">
+            <span class="flex h-11 w-11 items-center justify-center rounded-full bg-minastra-paper">
+              <img src="logo.png" alt="Logo Minastra" class="h-11 w-11 rounded-full object-cover" />
+            </span>
+            <span class="alegreya-sc text-2xl tracking-wider">MINASTRA</span>
+          </a>
+
+          <a
+            href="index2.html#produtos"
+            class="rounded-full border border-minastra-gold/60 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] transition hover:bg-minastra-gold hover:text-minastra-espresso focus:outline-none focus:ring-4 focus:ring-minastra-gold/30"
+          >
+            Voltar
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="conteudo" class="grain-bg px-4 py-6 sm:px-8 sm:py-10 lg:px-10 lg:py-14" hidden>
+      <div class="mx-auto grid max-w-md gap-8 sm:max-w-2xl lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-12">
+        <section
+          aria-label="Fotos do produto"
+          class="overflow-hidden rounded-[2rem] border-4 border-minastra-paper bg-minastra-paper shadow-[0_24px_60px_rgba(43,29,22,.14)]"
+        >
+          <div class="bg-minastra-espresso p-4">
+            <img
+              id="fotoPrincipal"
+              src=""
+              alt=""
+              class="h-[22rem] w-full rounded-[1.4rem] object-cover sm:h-[32rem]"
+            />
+          </div>
+          <div id="miniaturas" class="grid grid-cols-4 gap-3 p-4"></div>
+        </section>
+
+        <section
+          class="rounded-[2rem] border-2 border-minastra-brown/20 bg-minastra-paper p-6 shadow-[0_20px_50px_rgba(43,29,22,.08)] sm:p-8"
+        >
+          <span
+            id="torra"
+            class="inline-flex bg-minastra-gold px-3 py-1 text-[10px] font-bold uppercase tracking-[0.22em] text-minastra-espresso"
+          ></span>
+
+          <h2 id="nome" class="mt-5 font-serifbrand text-4xl font-bold leading-tight text-minastra-brown sm:text-5xl"></h2>
+          <p id="descricao" class="mt-4 text-[15px] leading-7 text-[#654638] sm:text-lg sm:leading-8"></p>
+
+          <div class="mt-7 border-t border-minastra-brown/15 pt-6">
+            <p class="text-[11px] font-bold uppercase tracking-[0.24em] text-minastra-brown">
+              Escolha o peso
+            </p>
+            <div id="pesos" class="mt-4 grid grid-cols-2 gap-3"></div>
+          </div>
+
+          <div class="mt-7 border-t border-minastra-brown/15 pt-6">
+            <label for="quantidade" class="text-[11px] font-bold uppercase tracking-[0.24em] text-minastra-brown">
+              Quantidade
+            </label>
+            <div class="mt-4 flex w-52 items-center justify-between overflow-hidden rounded-full border-2 border-minastra-brown/20 bg-minastra-cream">
+              <button id="menos" type="button" class="h-12 w-14 text-2xl font-bold text-minastra-brown" aria-label="Diminuir quantidade">
+                −
+              </button>
+              <input
+                id="quantidade"
+                type="number"
+                min="1"
+                value="1"
+                class="h-12 w-20 bg-transparent text-center text-lg font-bold outline-none"
+              />
+              <button id="mais" type="button" class="h-12 w-14 text-2xl font-bold text-minastra-brown" aria-label="Aumentar quantidade">
+                +
+              </button>
+            </div>
+          </div>
+
+          <div class="mt-7 rounded-[1.4rem] bg-minastra-espresso p-5 text-minastra-paper">
+            <div class="flex items-center justify-between gap-4">
+              <span class="text-xs font-bold uppercase tracking-[0.2em] text-minastra-gold">Total</span>
+              <strong id="total" class="font-serifbrand text-3xl text-minastra-gold sm:text-4xl"></strong>
+            </div>
+            <a
+              id="whatsapp"
+              href="#"
+              target="_blank"
+              rel="noopener"
+              class="mt-5 flex min-h-14 w-full items-center justify-center rounded-full bg-minastra-gold px-5 py-4 text-center text-sm font-bold uppercase tracking-[0.15em] text-minastra-espresso transition hover:bg-minastra-paper focus:outline-none focus:ring-4 focus:ring-minastra-gold/30"
+            >
+              Comprar no WhatsApp
+            </a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <main id="erro" class="grain-bg min-h-[70vh] px-6 py-20 text-center" hidden>
+      <div class="mx-auto max-w-md rounded-[2rem] bg-minastra-paper p-8 shadow-xl">
+        <h1 class="font-serifbrand text-4xl font-bold text-minastra-brown">Produto não encontrado</h1>
+        <p class="mt-4 leading-7 text-[#654638]">Volte ao catálogo e escolha um dos nossos cafés.</p>
+        <a
+          href="index2.html#produtos"
+          class="mt-7 inline-flex rounded-full bg-minastra-gold px-6 py-4 text-sm font-bold uppercase tracking-[0.16em] text-minastra-espresso"
+        >
+          Ver produtos
+        </a>
+      </div>
+    </main>
+
+    <footer class="bg-minastra-espresso px-6 py-8 text-center text-sm text-minastra-paper/60">
+      <p>© 2026 Minastra Cafés Especiais</p>
+      <p class="mt-2">Simples. Puro. Intenso.</p>
+    </footer>
+
+    <script>
+      const WHATSAPP_NUMBER = '5535999999999'; // Substitua pelo número real da Minastra.
+      const params = new URLSearchParams(window.location.search);
+      const produtoSlug = params.get('produto');
+
+      let produto;
+      let pesoSelecionado;
+      let fotoSelecionada;
+
+      const elemento = (id) => document.getElementById(id);
+      const formatarMoeda = (valor) => valor.toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+      });
+
+      function atualizarCompra() {
+        const quantidadeInput = elemento('quantidade');
+        const quantidade = Math.max(1, Number.parseInt(quantidadeInput.value, 10) || 1);
+        const total = produto.pesoValores[pesoSelecionado] * quantidade;
+
+        quantidadeInput.value = quantidade;
+        elemento('total').textContent = formatarMoeda(total);
+
+        const mensagem = [
+          'Olá! Quero comprar na Minastra:',
+          `Produto: ${produto.nome}`,
+          `Peso: ${pesoSelecionado}g`,
+          `Quantidade: ${quantidade}`,
+          `Total: ${formatarMoeda(total)}`,
+        ].join('\n');
+
+        elemento('whatsapp').href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensagem)}`;
+      }
+
+      function renderizarProduto() {
+        document.title = `${produto.nome} | Minastra Cafés Especiais`;
+        elemento('nome').textContent = produto.nome;
+        elemento('descricao').textContent = produto.descricao;
+        elemento('torra').textContent = produto.torra;
+        elemento('fotoPrincipal').src = fotoSelecionada;
+        elemento('fotoPrincipal').alt = produto.nome;
+
+        elemento('miniaturas').innerHTML = produto.fotos.map((foto, indice) => `
+          <button
+            type="button"
+            data-foto="${foto}"
+            aria-label="Ver foto ${indice + 1} de ${produto.nome}"
+            class="overflow-hidden rounded-xl border-2 bg-minastra-cream p-1 transition focus:outline-none focus:ring-4 focus:ring-minastra-gold/30 ${foto === fotoSelecionada ? 'border-minastra-gold' : 'border-transparent'}"
+          >
+            <img src="${foto}" alt="" class="aspect-square w-full rounded-lg object-cover" />
+          </button>
+        `).join('');
+
+        elemento('pesos').innerHTML = Object.entries(produto.pesoValores).map(([peso, valor]) => `
+          <button
+            type="button"
+            data-peso="${peso}"
+            class="rounded-[1.2rem] border-2 p-4 text-left transition focus:outline-none focus:ring-4 focus:ring-minastra-gold/30 ${peso === pesoSelecionado ? 'border-minastra-espresso bg-minastra-espresso text-minastra-paper' : 'border-minastra-brown/20 bg-minastra-cream text-minastra-espresso'}"
+          >
+            <span class="block text-xs font-bold uppercase tracking-[0.2em]">${peso}g</span>
+            <strong class="mt-2 block font-serifbrand text-2xl sm:text-3xl">${formatarMoeda(valor)}</strong>
+          </button>
+        `).join('');
+
+        document.querySelectorAll('[data-foto]').forEach((botao) => {
+          botao.addEventListener('click', () => {
+            fotoSelecionada = botao.dataset.foto;
+            renderizarProduto();
+          });
+        });
+
+        document.querySelectorAll('[data-peso]').forEach((botao) => {
+          botao.addEventListener('click', () => {
+            pesoSelecionado = botao.dataset.peso;
+            renderizarProduto();
+          });
+        });
+
+        atualizarCompra();
+      }
+
+      function exibirErro() {
+        document.querySelector('header').hidden = true;
+        elemento('conteudo').hidden = true;
+        elemento('erro').hidden = false;
+      }
+
+      fetch('products.json')
+        .then((resposta) => {
+          if (!resposta.ok) {
+            throw new Error('Não foi possível carregar o catálogo.');
+          }
+
+          return resposta.json();
+        })
+        .then((catalogo) => {
+          produto = catalogo[produtoSlug];
+
+          if (!produto) {
+            throw new Error('Produto não encontrado.');
+          }
+
+          pesoSelecionado = Object.keys(produto.pesoValores).at(-1);
+          fotoSelecionada = produto.fotos[0];
+          elemento('conteudo').hidden = false;
+          renderizarProduto();
+        })
+        .catch(exibirErro);
+
+      elemento('menos').addEventListener('click', () => {
+        elemento('quantidade').value = Math.max(1, Number(elemento('quantidade').value) - 1);
+        atualizarCompra();
+      });
+
+      elemento('mais').addEventListener('click', () => {
+        elemento('quantidade').value = (Number(elemento('quantidade').value) || 0) + 1;
+        atualizarCompra();
+      });
+
+      elemento('quantidade').addEventListener('input', atualizarCompra);
+    </script>
+  </body>
+</html>
