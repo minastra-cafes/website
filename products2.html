@@ -7,7 +7,24 @@
       name="description"
       content="Conheça os cafés especiais Minastra, escolha o peso e faça seu pedido."
     />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="Minastra Cafés Especiais" />
+    <meta name="theme-color" content="#2b1d16" />
     <title>Produto | Minastra Cafés Especiais</title>
+
+    <link id="canonicalUrl" rel="canonical" href="https://minastra-cafes.github.io/website/products2.html" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:type" content="product" />
+    <meta property="og:site_name" content="Minastra Cafés Especiais" />
+    <meta id="ogTitle" property="og:title" content="Café especial | Minastra" />
+    <meta id="ogDescription" property="og:description" content="Café especial 100% arábica produzido no Sul de Minas." />
+    <meta id="ogUrl" property="og:url" content="https://minastra-cafes.github.io/website/products2.html" />
+    <meta id="ogImage" property="og:image" content="https://minastra-cafes.github.io/website/images/produtos/new_bronze.png" />
+    <meta property="og:image:alt" content="Café especial Minastra" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta id="twitterTitle" name="twitter:title" content="Café especial | Minastra" />
+    <meta id="twitterDescription" name="twitter:description" content="Escolha seu café especial Minastra e faça seu pedido." />
+    <meta id="twitterImage" name="twitter:image" content="https://minastra-cafes.github.io/website/images/produtos/new_bronze.png" />
 
     <link rel="icon" type="image/png" href="favicon.png" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -66,7 +83,7 @@
 
       <div class="relative mx-auto max-w-7xl px-6 py-4 sm:px-8 lg:px-10">
         <nav class="flex items-center justify-between" aria-label="Navegação principal">
-          <a href="index2.html#inicio" class="flex items-center gap-3">
+          <a href="index.html#inicio" class="flex items-center gap-3">
             <span class="flex h-11 w-11 items-center justify-center rounded-full bg-minastra-paper">
               <img src="logo.png" alt="Logo Minastra" class="h-11 w-11 rounded-full object-cover" />
             </span>
@@ -74,7 +91,7 @@
           </a>
 
           <a
-            href="index2.html#produtos"
+            href="index.html#cafes"
             class="rounded-full border border-minastra-gold/60 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] transition hover:bg-minastra-gold hover:text-minastra-espresso focus:outline-none focus:ring-4 focus:ring-minastra-gold/30"
           >
             Voltar
@@ -86,9 +103,9 @@
     <main id="conteudo" class="grain-bg px-4 pb-28 pt-5 sm:px-8 sm:pb-10 sm:pt-8 lg:px-10 lg:py-12" hidden>
       <div class="mx-auto max-w-md sm:max-w-2xl lg:max-w-7xl">
         <nav class="mb-5 flex items-center gap-2 text-xs text-minastra-brown/60" aria-label="Navegação estrutural">
-          <a href="index2.html" class="transition hover:text-minastra-brown">Início</a>
+          <a href="index.html" class="transition hover:text-minastra-brown">Início</a>
           <span aria-hidden="true">/</span>
-          <a href="index2.html#cafes" class="transition hover:text-minastra-brown">Cafés</a>
+          <a href="index.html#cafes" class="transition hover:text-minastra-brown">Cafés</a>
           <span aria-hidden="true">/</span>
           <span id="breadcrumbProduto" class="font-semibold text-minastra-brown">Produto</span>
         </nav>
@@ -207,7 +224,7 @@
         <h1 class="font-serifbrand text-4xl font-bold text-minastra-brown">Produto não encontrado</h1>
         <p class="mt-4 leading-7 text-[#654638]">Volte ao catálogo e escolha um dos nossos cafés.</p>
         <a
-          href="index2.html#produtos"
+          href="index.html#cafes"
           class="mt-7 inline-flex rounded-full bg-minastra-gold px-6 py-4 text-sm font-bold uppercase tracking-[0.16em] text-minastra-espresso"
         >
           Ver produtos
@@ -221,7 +238,8 @@
     </footer>
 
     <script>
-      const WHATSAPP_NUMBER = '5535999999999'; // Substitua pelo número real da Minastra.
+      const WHATSAPP_NUMBER = '5535999131028';
+      const SITE_URL = 'https://minastra-cafes.github.io/website';
       const params = new URLSearchParams(window.location.search);
       const produtoSlug = params.get('produto');
 
@@ -244,12 +262,14 @@
         elemento('total').textContent = formatarMoeda(total);
         elemento('totalMobile').textContent = formatarMoeda(total);
 
+        const pacote = quantidade === 1 ? 'pacote' : 'pacotes';
         const mensagem = [
-          'Olá! Quero comprar na Minastra:',
-          `Produto: ${produto.nome}`,
-          `Peso: ${pesoSelecionado}g`,
-          `Quantidade: ${quantidade}`,
-          `Total: ${formatarMoeda(total)}`,
+          'Olá! Tudo bem?',
+          '',
+          `Gostaria de pedir ${quantidade} ${pacote} do ${produto.nome}, de ${pesoSelecionado}g.`,
+          `O valor mostrado no site foi ${formatarMoeda(total)}.`,
+          '',
+          'Vocês poderiam confirmar a disponibilidade e me informar o valor da entrega, por favor?',
         ].join('\n');
 
         const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensagem)}`;
@@ -258,13 +278,54 @@
       }
 
       function renderizarProduto() {
+        const produtoUrl = `${SITE_URL}/products2.html?produto=${encodeURIComponent(produtoSlug)}`;
+        const imagemUrl = `${SITE_URL}/${produto.fotos[0]}`;
+        const seoTitle = `${produto.nome} | Café especial Minastra`;
+        const seoDescription = `${produto.descricao} Café 100% arábica produzido em Alfenas, Sul de Minas.`;
+
         document.title = `${produto.nome} | Minastra Cafés Especiais`;
+        document.querySelector('meta[name="description"]').content = seoDescription;
+        elemento('canonicalUrl').href = produtoUrl;
+        elemento('ogTitle').content = seoTitle;
+        elemento('ogDescription').content = seoDescription;
+        elemento('ogUrl').content = produtoUrl;
+        elemento('ogImage').content = imagemUrl;
+        elemento('twitterTitle').content = seoTitle;
+        elemento('twitterDescription').content = seoDescription;
+        elemento('twitterImage').content = imagemUrl;
         elemento('nome').textContent = produto.nome;
         elemento('breadcrumbProduto').textContent = produto.nome;
         elemento('descricao').textContent = produto.descricao;
         elemento('torra').textContent = produto.torra;
         elemento('fotoPrincipal').src = fotoSelecionada;
         elemento('fotoPrincipal').alt = produto.nome;
+
+        const dadosEstruturados = {
+          '@context': 'https://schema.org',
+          '@type': 'Product',
+          name: produto.nome,
+          description: produto.descricao,
+          image: produto.fotos.map((imagem) => `${SITE_URL}/${imagem}`),
+          brand: {
+            '@type': 'Brand',
+            name: 'Minastra',
+          },
+          offers: Object.entries(produto.pesoValores).map(([peso, valor]) => ({
+            '@type': 'Offer',
+            url: produtoUrl,
+            priceCurrency: 'BRL',
+            price: valor.toFixed(2),
+            name: `${produto.nome} ${peso}g`,
+          })),
+        };
+        let schemaProduto = elemento('schemaProduto');
+        if (!schemaProduto) {
+          schemaProduto = document.createElement('script');
+          schemaProduto.id = 'schemaProduto';
+          schemaProduto.type = 'application/ld+json';
+          document.head.appendChild(schemaProduto);
+        }
+        schemaProduto.textContent = JSON.stringify(dadosEstruturados);
 
         elemento('miniaturas').innerHTML = produto.fotos.map((foto, indice) => `
           <button
