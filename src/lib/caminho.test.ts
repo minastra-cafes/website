@@ -1,7 +1,8 @@
-import { caminhoPublico } from "./caminho";
+import { BASE_PATH, caminhoPublico } from "./caminho";
 
 describe("caminhoPublico", () => {
-  it("junta o basePath do GitHub Pages ao caminho do arquivo", () => {
-    expect(caminhoPublico("/logo.png")).toBe("/website/logo.png");
+  it("serve os arquivos na raiz do domínio minastra.azics.com.br", () => {
+    expect(BASE_PATH).toBe("");
+    expect(caminhoPublico("/logo.png")).toBe("/logo.png");
   });
 });

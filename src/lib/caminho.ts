@@ -1,6 +1,7 @@
-// O GitHub Pages serve o site em minastra-cafes.github.io/website/. O next/link já põe o prefixo,
-// mas o src de <img> e os links fora do React precisam dele à mão.
-export const BASE_PATH = "/website";
+// O site fica na raiz de minastra.azics.com.br, então o prefixo é vazio. Se um cliente for servido
+// numa subpasta (como o antigo minastra-cafes.github.io/website/), basta preencher aqui: o next.config
+// usa o mesmo valor, e o src de <img> passa por caminhoPublico().
+export const BASE_PATH = "";
 
 export function caminhoPublico(caminho: string): string {
   return `${BASE_PATH}${caminho}`;

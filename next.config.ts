@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 import { BASE_PATH } from "./src/lib/caminho";
 
 const nextConfig: NextConfig = {
-  // Site estático no GitHub Pages, servido em minastra-cafes.github.io/website/.
+  // Site estático no GitHub Pages, com o domínio minastra.azics.com.br (configurado nas Settings do repo).
   output: "export",
   basePath: BASE_PATH,
   trailingSlash: true,

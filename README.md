@@ -1,7 +1,8 @@
 # Minastra Cafés Especiais
 
 Site da Minastra em Next 16 (export estático), publicado no GitHub Pages em
-https://minastra-cafes.github.io/website/. Segue a mesma estrutura dos projetos da Azics.
+https://minastra.azics.com.br/ (o antigo minastra-cafes.github.io/website/ redireciona para lá).
+Segue a mesma estrutura dos projetos da Azics.
 
 O conteúdo (textos, produtos, fotos) fica fixo em `src/data` e `src/components/sections`. Só a seção
 de avaliações vem da API da Azics (`GET /public/sites/<slug>/avaliacoes`), buscada no navegador.
@@ -14,7 +15,7 @@ npm install
 npm run dev
 ```
 
-Abra http://localhost:3000/website/ (o site vive em `/website/`, como no GitHub Pages).
+Abra http://localhost:3000/.
 
 ## Testar
 
@@ -27,6 +28,9 @@ npm run lint
 
 Um push no `main` roda o workflow `.github/workflows/deploy.yml`: testes, lint, `npm run build` e
 publica a pasta `out/` no GitHub Pages.
+
+O domínio fica em Settings → Pages → Custom domain (com deploy por Actions, um arquivo `CNAME`
+seria ignorado). No DNS da Cloudflare: `CNAME minastra → minastra-cafes.github.io`, sem proxy.
 
 ## Configuração
 

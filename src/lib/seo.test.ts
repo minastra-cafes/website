@@ -17,7 +17,7 @@ describe("montarDadosSite", () => {
 
   it("registra a Azics como criadora do site", () => {
     const site = noDoTipo("WebSite");
-    expect(site.url).toBe("https://minastra-cafes.github.io/website/");
+    expect(site.url).toBe("https://minastra.azics.com.br/");
     expect(site.creator).toEqual({ "@type": "Organization", name: "Azics", url: "https://azics.com.br" });
     expect(CRIADOR_DO_SITE.url).toBe("https://azics.com.br");
   });

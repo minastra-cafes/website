@@ -55,6 +55,6 @@ describe("CompraProduto", () => {
     const comDuasFotos = { ...ouro, fotos: ["/images/a.webp", "/images/b.webp"] };
     render(<CompraProduto produto={comDuasFotos} />);
     await userEvent.click(screen.getByRole("button", { name: "Ver foto 2 de Linha Ouro" }));
-    expect(screen.getByRole("img", { name: "Linha Ouro" })).toHaveAttribute("src", "/website/images/b.webp");
+    expect(screen.getByRole("img", { name: "Linha Ouro" })).toHaveAttribute("src", "/images/b.webp");
   });
 });
