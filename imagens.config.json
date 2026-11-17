@@ -1,0 +1,24 @@
+{
+  "fotos": {
+    "serras-cafe": { "origem": "originais/sobre/serras_cafe.png", "larguras": [640, 1152] },
+    "localizacao": { "origem": "originais/sobre/localizacao_minastra.jpg", "larguras": [640, 1152] },
+    "helio": { "origem": "originais/sobre/helio.jpeg", "larguras": [540] },
+    "torrefacao": { "origem": "originais/sobre/torrefacao.jpeg", "larguras": [480, 894] },
+    "trator": { "origem": "originais/sobre/trator.jpeg", "larguras": [640, 1152] },
+    "produto-bronze": { "origem": "originais/produtos/new_bronze.webp", "larguras": [480, 856] },
+    "produto-ouro": { "origem": "originais/produtos/new_ouro.webp", "larguras": [640, 1200] },
+    "produto-ouro-graos": { "origem": "originais/produtos/ouro_grao.webp", "larguras": [640, 1200] },
+    "logo": { "origem": "originais/logo.png", "larguras": [96] }
+  },
+  "videos": {
+    "colhedeira": { "origem": "originais/sobre/colhedeira.webp" }
+  },
+  "compartilhamento": {
+    "compartilhar-trator": "originais/sobre/trator.jpeg",
+    "compartilhar-serras": "originais/sobre/serras_cafe.png"
+  },
+  "icones": {
+    "favicon": "originais/favicon.png",
+    "logoGoogle": "originais/logo.png"
+  }
+}

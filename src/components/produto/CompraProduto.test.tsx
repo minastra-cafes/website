@@ -52,7 +52,7 @@ describe("CompraProduto", () => {
   });
 
   it("troca a foto principal ao clicar numa miniatura", async () => {
-    const comDuasFotos = { ...ouro, fotos: ["/images/a.webp", "/images/b.webp"] };
+    const comDuasFotos = { ...ouro, fotos: [{ src: "/images/a.webp", srcSet: "/images/a.webp 600w" }, { src: "/images/b.webp", srcSet: "/images/b.webp 600w" }] };
     render(<CompraProduto produto={comDuasFotos} />);
     await userEvent.click(screen.getByRole("button", { name: "Ver foto 2 de Linha Ouro" }));
     expect(screen.getByRole("img", { name: "Linha Ouro" })).toHaveAttribute("src", "/images/b.webp");

@@ -1,4 +1,4 @@
-import { caminhoPublico } from "@/lib/caminho";
+import { foto } from "@/lib/foto";
 
 const DESTAQUES = [
   { valor: "100%", rotulo: "Arábica" },
@@ -9,7 +9,7 @@ const DESTAQUES = [
 export function Inicio() {
   return (
     <section id="inicio" className="relative isolate min-h-[86svh] max-h-[90svh] overflow-hidden bg-minastra-espresso pt-16 text-minastra-paper">
-      <img src={caminhoPublico("/images/sobre/serras_cafe.png")} alt="Cafezal Minastra nas montanhas do Sul de Minas" className="absolute inset-0 -z-20 h-full w-full object-cover" />
+      <img {...foto("serras-cafe")} sizes="100vw" fetchPriority="high" alt="Cafezal Minastra nas montanhas do Sul de Minas" className="absolute inset-0 -z-20 h-full w-full object-cover" />
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(37,23,17,.96)_0%,rgba(37,23,17,.82)_48%,rgba(37,23,17,.38)_100%)]" />
 
       <div className="mx-auto flex min-h-[calc(92svh-4rem)] max-w-7xl items-center px-5 py-16 sm:px-8 lg:px-10">

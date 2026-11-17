@@ -49,7 +49,7 @@ export function montarDadosProduto(produto: Produto) {
     "@type": "Product",
     name: produto.nome,
     description: produto.descricao,
-    image: produto.fotos.map((foto) => `${SITE.url}${foto}`),
+    image: produto.fotos.map((foto) => `${SITE.url}${foto.src}`),
     brand: { "@type": "Brand", name: "Minastra" },
     offers: Object.entries(produto.pesoValores).map(([peso, valor]) => ({
       "@type": "Offer",

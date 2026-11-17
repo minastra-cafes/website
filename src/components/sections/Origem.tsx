@@ -1,4 +1,4 @@
-import { caminhoPublico } from "@/lib/caminho";
+import { foto } from "@/lib/foto";
 
 export function Origem() {
   return (
@@ -6,7 +6,8 @@ export function Origem() {
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:gap-20">
         <div className="relative">
           <img
-            src={caminhoPublico("/images/sobre/localizacao_minastra.jpg")}
+            {...foto("localizacao")}
+            sizes="(min-width: 1024px) 50vw, 100vw"
             alt="Paisagem do Sítio Lagoa em Alfenas"
             loading="lazy"
             className="h-[22rem] w-full rounded-3xl object-cover sm:h-[34rem]"

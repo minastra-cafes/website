@@ -10,6 +10,7 @@ import { Inicio } from "@/components/sections/Inicio";
 import { Origem } from "@/components/sections/Origem";
 import { Qualidade } from "@/components/sections/Qualidade";
 import { SITE } from "@/data/site";
+import { IMAGEM_COMPARTILHAR } from "@/lib/foto";
 import { CRIADOR_DO_SITE, montarDadosSite, ROBOTS_INDEXAR, serializarJsonLd } from "@/lib/seo";
 
 const TITULO = "Minastra | Cafés especiais do Sul de Minas";
@@ -27,13 +28,13 @@ export const metadata: Metadata = {
     title: TITULO,
     description: "Cafés especiais 100% arábica, com origem no Sítio Lagoa, em Alfenas, Sul de Minas.",
     url: `${SITE.url}/`,
-    images: [{ url: `${SITE.url}/images/sobre/trator.jpeg`, alt: "Cafezal Minastra nas montanhas do Sul de Minas" }],
+    images: [{ url: `${SITE.url}${IMAGEM_COMPARTILHAR.trator}`, width: 1200, height: 630, alt: "Cafezal Minastra nas montanhas do Sul de Minas" }],
   },
   twitter: {
     card: "summary_large_image",
     title: TITULO,
     description: "Café especial com origem de verdade, produzido artesanalmente em Alfenas, Minas Gerais.",
-    images: [`${SITE.url}/images/sobre/serras_cafe.png`],
+    images: [`${SITE.url}${IMAGEM_COMPARTILHAR.serras}`],
   },
 };
 

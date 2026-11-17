@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { caminhoPublico } from "@/lib/caminho";
+import { foto as fotoDe, type NomeFoto } from "@/lib/foto";
 
 type Cartao = {
   id: string;
@@ -8,7 +8,7 @@ type Cartao = {
   texto: string;
   preco: string;
   selo: string;
-  foto: string;
+  foto: NomeFoto;
   alt: string;
   largura: number;
   altura: number;
@@ -24,7 +24,7 @@ const CARTOES: Cartao[] = [
     texto: "Encorpado, naturalmente doce e perfeito para o café de todos os dias.",
     preco: "R$ 20,00",
     selo: "Intenso",
-    foto: "/images/produtos/new_bronze.webp",
+    foto: "produto-bronze",
     alt: "Pacote Linha Bronze",
     largura: 856,
     altura: 1200,
@@ -36,7 +36,7 @@ const CARTOES: Cartao[] = [
     texto: "Chocolate, mel e doçura natural em uma xícara leve e aromática.",
     preco: "R$ 25,00",
     selo: "Mais suave",
-    foto: "/images/produtos/new_ouro.webp",
+    foto: "produto-ouro",
     alt: "Pacote Linha Ouro",
     largura: 1200,
     altura: 1080,
@@ -49,7 +49,7 @@ const CARTOES: Cartao[] = [
     texto: "Para moer na hora e preservar toda a complexidade, frescor e aroma.",
     preco: "R$ 25,00",
     selo: "Em grãos",
-    foto: "/images/produtos/ouro_grao.webp",
+    foto: "produto-ouro-graos",
     alt: "Linha Ouro em grãos",
     largura: 1200,
     altura: 1080,
@@ -69,7 +69,8 @@ function CartaoCafe({ cartao }: { cartao: Cartao }) {
     >
       <div className={escuro ? "relative overflow-hidden p-3" : "relative overflow-hidden bg-minastra-espresso p-3"}>
         <img
-          src={caminhoPublico(cartao.foto)}
+          {...fotoDe(cartao.foto)}
+          sizes="(min-width: 768px) 33vw, 100vw"
           alt={cartao.alt}
           width={cartao.largura}
           height={cartao.altura}

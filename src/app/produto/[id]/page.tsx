@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!produto) return {};
 
   const url = `${SITE.url}/produto/${produto.id}/`;
-  const imagem = `${SITE.url}${produto.fotos[0]}`;
+  const imagem = `${SITE.url}${produto.fotos[0].src}`;
   const tituloSeo = `${produto.nome} | Café especial Minastra`;
   const descricao = montarDescricaoProduto(produto);
 

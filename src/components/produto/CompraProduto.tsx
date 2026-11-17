@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import type { Produto } from "@/data/produtos";
-import { caminhoPublico } from "@/lib/caminho";
 import { calcularTotal, formatarMoeda, montarLinkWhatsApp, montarMensagemPedido, normalizarQuantidade } from "@/lib/pedido";
 
 const FOCO = "focus:outline-none focus:ring-4 focus:ring-minastra-gold/30";
@@ -27,7 +26,9 @@ export function CompraProduto({ produto }: { produto: Produto }) {
         >
           <div className="bg-minastra-espresso p-4">
             <img
-              src={caminhoPublico(foto)}
+              src={foto.src}
+              srcSet={foto.srcSet}
+              sizes="(min-width: 1024px) 50vw, 100vw"
               alt={produto.nome}
               decoding="async"
               fetchPriority="high"
@@ -37,13 +38,13 @@ export function CompraProduto({ produto }: { produto: Produto }) {
           <div className="grid grid-cols-4 gap-3 p-4">
             {produto.fotos.map((item, indice) => (
               <button
-                key={item}
+                key={item.src}
                 type="button"
                 aria-label={`Ver foto ${indice + 1} de ${produto.nome}`}
                 onClick={() => setFoto(item)}
-                className={`overflow-hidden rounded-xl border-2 bg-minastra-cream p-1 transition ${FOCO} ${item === foto ? "border-minastra-gold" : "border-transparent"}`}
+                className={`overflow-hidden rounded-xl border-2 bg-minastra-cream p-1 transition ${FOCO} ${item.src === foto.src ? "border-minastra-gold" : "border-transparent"}`}
               >
-                <img src={caminhoPublico(item)} alt="" className="aspect-square w-full rounded-lg object-cover" />
+                <img src={item.src} srcSet={item.srcSet} sizes="120px" alt="" className="aspect-square w-full rounded-lg object-cover" />
               </button>
             ))}
           </div>

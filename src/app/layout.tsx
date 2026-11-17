@@ -22,7 +22,10 @@ const alegreya = Alegreya_SC({
 export const metadata: Metadata = {
   metadataBase: new URL(`${SITE.url}/`),
   authors: [{ name: SITE.nome }],
-  icons: { icon: `${SITE.url}/favicon.png` },
+  icons: {
+    icon: [{ url: `${SITE.url}/favicon.png`, sizes: "48x48", type: "image/png" }],
+    apple: [{ url: `${SITE.url}/apple-touch-icon.png`, sizes: "180x180" }],
+  },
   other: { google: "notranslate" },
 };
 

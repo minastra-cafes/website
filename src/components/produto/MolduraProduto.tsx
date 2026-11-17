@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { CreditoAzics } from "@/components/CreditoAzics";
-import { caminhoPublico } from "@/lib/caminho";
+import { foto } from "@/lib/foto";
 
 // A página de produto do site antigo tinha cores um pouco diferentes da inicial (ver .paleta-produto
 // no globals.css) e o fundo creme com o degradê .grain-bg.
@@ -15,7 +15,7 @@ export function MolduraProduto({ comCabecalho = true, children }: { comCabecalho
             <nav className="flex items-center justify-between" aria-label="Navegação principal">
               <Link href="/#inicio" className="flex items-center gap-3">
                 <span className="flex h-11 w-11 items-center justify-center rounded-full bg-minastra-paper">
-                  <img src={caminhoPublico("/logo.png")} alt="Logo Minastra" className="h-11 w-11 rounded-full object-cover" />
+                  <img src={foto("logo").src} alt="Logo Minastra" className="h-11 w-11 rounded-full object-cover" />
                 </span>
                 <span className="alegreya-sc text-2xl tracking-wider">MINASTRA</span>
               </Link>

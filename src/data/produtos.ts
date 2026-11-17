@@ -1,10 +1,12 @@
+import { foto, type Foto } from "@/lib/foto";
+
 export type Produto = {
   id: string;
   nome: string;
   torra: string;
   descricao: string;
-  // Caminhos a partir de public/, começando por /images/.
-  fotos: string[];
+  // Geradas por scripts/otimizar-imagens.mjs (ver imagens.config.json).
+  fotos: Foto[];
   // Peso em gramas → preço em reais. A ordem é a dos botões; a página abre no último.
   pesoValores: Record<string, number>;
 };
@@ -16,7 +18,7 @@ export const PRODUTOS: Produto[] = [
     torra: "Torra Média Escura",
     descricao:
       "Sabor intenso e encorpado do café tradicional, mas com um toque mais doce e um perfil que combina com o dia a dia — o café perfeito para as manhãs.",
-    fotos: ["/images/produtos/new_bronze.webp"],
+    fotos: [foto("produto-bronze")],
     pesoValores: { "250": 20, "500": 39 },
   },
   {
@@ -25,7 +27,7 @@ export const PRODUTOS: Produto[] = [
     torra: "Torra Média Clara",
     descricao:
       "Aroma marcante de chocolate e sabor naturalmente doce, com notas suaves de mel. Um café leve e envolvente para quem aprecia suavidade e frescor.",
-    fotos: ["/images/produtos/new_ouro.webp"],
+    fotos: [foto("produto-ouro")],
     pesoValores: { "250": 25, "500": 48 },
   },
   {
@@ -34,7 +36,7 @@ export const PRODUTOS: Produto[] = [
     torra: "Média Clara · Grão",
     descricao:
       "As mesmas notas doces de chocolate, mel e frescor da versão moída. Em grãos para quem prefere moer na hora e preservar toda a frescura e aroma do café.",
-    fotos: ["/images/produtos/ouro_grao.webp"],
+    fotos: [foto("produto-ouro-graos")],
     pesoValores: { "250": 25, "500": 48 },
   },
 ];

@@ -1,4 +1,5 @@
-import { caminhoPublico } from "@/lib/caminho";
+import { VideoPreguicoso } from "@/components/VideoPreguicoso";
+import { foto, VIDEO_COLHEDEIRA } from "@/lib/foto";
 
 const GRADIENTE_FORTE = "absolute inset-0 bg-gradient-to-t from-minastra-espresso/75 via-transparent to-transparent";
 const GRADIENTE = "absolute inset-0 bg-gradient-to-t from-minastra-espresso/65 via-transparent to-transparent";
@@ -20,7 +21,7 @@ export function Bastidores() {
         <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
           <figure className="group relative col-span-2 overflow-hidden rounded-3xl lg:row-span-2">
             <img
-              src={caminhoPublico("/images/sobre/helio.jpeg")}
+              {...foto("helio")}
               alt="Hélio Gomes no cafezal Minastra"
               loading="lazy"
               className="h-72 w-full object-cover transition duration-500 group-hover:scale-105 sm:h-96 lg:h-full"
@@ -34,7 +35,8 @@ export function Bastidores() {
 
           <figure className="group relative overflow-hidden rounded-3xl">
             <img
-              src={caminhoPublico("/images/sobre/torrefacao.jpeg")}
+              {...foto("torrefacao")}
+              sizes="(min-width: 1024px) 25vw, 50vw"
               alt="Processo de torrefação do café Minastra"
               loading="lazy"
               className="aspect-[4/5] w-full object-cover transition duration-500 group-hover:scale-105 lg:aspect-auto lg:h-72"
@@ -44,10 +46,10 @@ export function Bastidores() {
           </figure>
 
           <figure className="group relative overflow-hidden rounded-3xl">
-            <img
-              src={caminhoPublico("/images/sobre/colhedeira.webp")}
-              alt="Colheita no cafezal Minastra"
-              loading="lazy"
+            <VideoPreguicoso
+              mp4={VIDEO_COLHEDEIRA.mp4}
+              poster={VIDEO_COLHEDEIRA.poster}
+              rotulo="Colheita no cafezal Minastra"
               className="aspect-[4/5] w-full object-cover transition duration-500 group-hover:scale-105 lg:aspect-auto lg:h-72"
             />
             <div className={GRADIENTE} />
@@ -56,7 +58,8 @@ export function Bastidores() {
 
           <figure className="group relative col-span-2 overflow-hidden rounded-3xl">
             <img
-              src={caminhoPublico("/images/sobre/trator.jpeg")}
+              {...foto("trator")}
+              sizes="(min-width: 1024px) 50vw, 100vw"
               alt="Trabalho diário na propriedade Minastra"
               loading="lazy"
               className="h-52 w-full object-cover transition duration-500 group-hover:scale-105 sm:h-64"

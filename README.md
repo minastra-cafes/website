@@ -17,6 +17,21 @@ npm run dev
 
 Abra http://localhost:3000/.
 
+## Imagens
+
+As fotos originais ficam em `originais/` (fora do deploy). As versões leves que o site usa ficam em
+`public/images/` e são geradas a partir de `imagens.config.json`:
+
+```bash
+npm run imagens
+```
+
+O script (`scripts/otimizar-imagens.mjs`) gera WebP em cada largura da lista, as imagens de
+compartilhamento (JPEG 1200x630), os ícones e o vídeo da colheita (MP4; precisa do `ffmpeg`). Para
+incluir uma foto: coloque o original em `originais/`, inclua no JSON, rode o script e use
+`foto("<nome>")` no componente. Os testes falham se um arquivo pedido não existir, se sobrar
+imagem sem uso ou se algum arquivo passar de 250 KB.
+
 ## Testar
 
 ```bash
