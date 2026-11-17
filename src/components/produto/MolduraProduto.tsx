@@ -1,10 +1,21 @@
 import Link from "next/link";
+import { Contatos } from "@/components/Contatos";
 import { CreditoAzics } from "@/components/CreditoAzics";
 import { foto } from "@/lib/foto";
 
 // A página de produto do site antigo tinha cores um pouco diferentes da inicial (ver .paleta-produto
 // no globals.css) e o fundo creme com o degradê .grain-bg.
-export function MolduraProduto({ comCabecalho = true, children }: { comCabecalho?: boolean; children: React.ReactNode }) {
+// comBarraDeCompra: a página do produto tem a barra fixa "Comprar" no celular; o rodapé ganha espaço
+// embaixo para ela não cobrir os contatos.
+export function MolduraProduto({
+  comCabecalho = true,
+  comBarraDeCompra = false,
+  children,
+}: {
+  comCabecalho?: boolean;
+  comBarraDeCompra?: boolean;
+  children: React.ReactNode;
+}) {
   return (
     <div className="paleta-produto min-h-screen bg-minastra-cream text-minastra-espresso">
       {comCabecalho && (
@@ -33,9 +44,10 @@ export function MolduraProduto({ comCabecalho = true, children }: { comCabecalho
 
       {children}
 
-      <footer className="bg-minastra-espresso px-6 py-6 text-center text-sm text-minastra-paper/60">
+      <footer className={`bg-minastra-espresso px-6 pt-6 text-center text-sm text-minastra-paper/60 ${comBarraDeCompra ? "pb-28 sm:pb-6" : "pb-6"}`}>
         <p>© 2026 Minastra Cafés Especiais</p>
         <p className="mt-1">Simples. Puro. Intenso.</p>
+        <Contatos className="mt-4 justify-center" />
         <CreditoAzics className="mt-3" />
       </footer>
     </div>

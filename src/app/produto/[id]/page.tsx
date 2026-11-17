@@ -60,7 +60,7 @@ export default async function PaginaProduto({ params }: Props) {
   if (!produto) notFound();
 
   return (
-    <MolduraProduto>
+    <MolduraProduto comBarraDeCompra>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializarJsonLd(montarDadosProduto(produto)) }} />
       <main className="grain-bg px-4 pb-28 pt-5 sm:px-8 sm:pb-10 sm:pt-8 lg:px-10 lg:py-12">
         <div className="mx-auto max-w-md sm:max-w-2xl lg:max-w-7xl">

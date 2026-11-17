@@ -1,12 +1,13 @@
 import Link from "next/link";
+import { buscarProduto } from "@/data/produtos";
 import { foto as fotoDe, type NomeFoto } from "@/lib/foto";
+import { formatarMoeda } from "@/lib/pedido";
 
 type Cartao = {
   id: string;
   nome: string;
   torra: string;
   texto: string;
-  preco: string;
   selo: string;
   foto: NomeFoto;
   alt: string;
@@ -22,7 +23,6 @@ const CARTOES: Cartao[] = [
     nome: "Linha Bronze",
     torra: "Torra média escura",
     texto: "Encorpado, naturalmente doce e perfeito para o café de todos os dias.",
-    preco: "R$ 20,00",
     selo: "Intenso",
     foto: "produto-bronze-pacote",
     alt: "Pacote Linha Bronze",
@@ -34,7 +34,6 @@ const CARTOES: Cartao[] = [
     nome: "Linha Ouro",
     torra: "Torra média clara",
     texto: "Chocolate, mel e doçura natural em uma xícara leve e aromática.",
-    preco: "R$ 25,00",
     selo: "Mais suave",
     foto: "produto-ouro",
     alt: "Pacote Linha Ouro",
@@ -47,7 +46,6 @@ const CARTOES: Cartao[] = [
     nome: "Ouro em Grãos",
     torra: "Torra média clara",
     texto: "Para moer na hora e preservar toda a complexidade, frescor e aroma.",
-    preco: "R$ 25,00",
     selo: "Em grãos",
     foto: "produto-ouro-graos-pacote",
     alt: "Linha Ouro em grãos",
@@ -55,6 +53,13 @@ const CARTOES: Cartao[] = [
     altura: 1510,
   },
 ];
+
+// O preço vem de produtos.ts, o mesmo da página do produto: muda num lugar só.
+function precoInicial(id: string): string {
+  const produto = buscarProduto(id);
+  if (!produto) throw new Error(`Café sem produto em produtos.ts: ${id}`);
+  return formatarMoeda(Math.min(...Object.values(produto.pesoValores)));
+}
 
 function CartaoCafe({ cartao }: { cartao: Cartao }) {
   const escuro = cartao.escuro === true;
@@ -95,7 +100,7 @@ function CartaoCafe({ cartao }: { cartao: Cartao }) {
         <div className={`mt-6 flex items-end justify-between border-t pt-5 ${escuro ? "border-minastra-paper/10" : "border-minastra-brown/10"}`}>
           <div>
             <span className={`block text-xs ${escuro ? "text-minastra-paper/50" : "text-minastra-brown/60"}`}>A partir de</span>
-            <strong className="font-display text-2xl">{cartao.preco}</strong>
+            <strong className="font-display text-2xl">{precoInicial(cartao.id)}</strong>
           </div>
           <span
             className={
