@@ -3,6 +3,10 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main ]
+  # Toda segunda às 6h (Brasília): o HTML pega o título, o Sobre, o Instagram e o celular do painel
+  # da Azics. No navegador o site já confere a versão atual; isso só mantém o HTML em dia para o Google.
+  schedule:
+    - cron: "0 9 * * 1"
   workflow_dispatch:
 
 permissions:

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { useConteudo } from "@/components/ConteudoProvider";
 import type { Produto } from "@/data/produtos";
 import { calcularTotal, formatarMoeda, montarLinkWhatsApp, montarMensagemPedido, normalizarQuantidade } from "@/lib/pedido";
 
@@ -29,7 +30,8 @@ export function CompraProduto({ produto }: { produto: Produto }) {
 
   const pacotes = normalizarQuantidade(Number(quantidade));
   const total = formatarMoeda(calcularTotal(produto, peso, pacotes));
-  const linkWhatsApp = montarLinkWhatsApp(montarMensagemPedido(produto, peso, pacotes));
+  const { celular } = useConteudo();
+  const linkWhatsApp = montarLinkWhatsApp(montarMensagemPedido(produto, peso, pacotes), celular);
 
   return (
     <>

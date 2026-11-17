@@ -1,3 +1,4 @@
+import { CONTEUDO_PADRAO } from "@/data/conteudo";
 import { PRODUTOS } from "@/data/produtos";
 import { CRIADOR_DO_SITE, montarDadosProduto, montarDadosSite, montarDescricaoProduto } from "./seo";
 
@@ -6,7 +7,7 @@ const ouro = PRODUTOS.find((produto) => produto.id === "ouro")!;
 type No = Record<string, unknown>;
 
 function noDoTipo(tipo: string): No {
-  const grafo = montarDadosSite()["@graph"] as No[];
+  const grafo = montarDadosSite(CONTEUDO_PADRAO)["@graph"] as No[];
   return grafo.find((no) => no["@type"] === tipo)!;
 }
 

@@ -31,6 +31,6 @@ describe("montarMensagemPedido", () => {
 
 describe("montarLinkWhatsApp", () => {
   it("leva a mensagem codificada para o número do Minastra", () => {
-    expect(montarLinkWhatsApp("a b")).toBe("https://wa.me/5535999131028?text=a%20b");
+    expect(montarLinkWhatsApp("a b", "5535999131028")).toBe("https://wa.me/5535999131028?text=a%20b");
   });
 });

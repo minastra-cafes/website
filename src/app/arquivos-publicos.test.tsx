@@ -57,7 +57,7 @@ async function todosOsCaminhosUsados(): Promise<Set<string>> {
   const usados = new Set<string>();
   const adicionar = (lista: string[]) => lista.forEach((caminho) => usados.add(caminho));
 
-  adicionar(caminhosDoHtml(render(<Home />).container));
+  adicionar(caminhosDoHtml(render(await Home()).container));
   adicionar(caminhosDoHtml(render(<NaoEncontrado />).container));
   for (const produto of PRODUTOS) {
     const params = Promise.resolve({ id: produto.id });

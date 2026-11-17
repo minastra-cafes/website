@@ -46,7 +46,7 @@ describe("CompraProduto", () => {
   it("os dois botões de compra levam a mensagem do pedido ao WhatsApp", async () => {
     render(<CompraProduto produto={ouro} />);
     await userEvent.click(screen.getByRole("button", { name: "Aumentar quantidade" }));
-    const esperado = montarLinkWhatsApp(montarMensagemPedido(ouro, "500", 2));
+    const esperado = montarLinkWhatsApp(montarMensagemPedido(ouro, "500", 2), "5535999131028");
     expect(screen.getByRole("link", { name: "Comprar no WhatsApp" })).toHaveAttribute("href", esperado);
     expect(screen.getByRole("link", { name: "Comprar" })).toHaveAttribute("href", esperado);
   });

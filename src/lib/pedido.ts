@@ -1,5 +1,4 @@
 import type { Produto } from "@/data/produtos";
-import { SITE } from "@/data/site";
 
 export function formatarMoeda(valor: number): string {
   return valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -27,6 +26,7 @@ export function montarMensagemPedido(produto: Produto, peso: string, quantidade:
   ].join("\n");
 }
 
-export function montarLinkWhatsApp(mensagem: string): string {
-  return `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(mensagem)}`;
+// celular: só dígitos, com DDI e DDD (o do painel da Azics).
+export function montarLinkWhatsApp(mensagem: string, celular: string): string {
+  return `https://wa.me/${celular}?text=${encodeURIComponent(mensagem)}`;
 }

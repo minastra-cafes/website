@@ -18,7 +18,7 @@ describe("contatos no rodapé", () => {
     expect(instagram).toHaveAttribute("target", "_blank");
 
     const whatsapp = rodape.getByRole("link", { name: /WhatsApp/ });
-    expect(whatsapp).toHaveAttribute("href", montarLinkWhatsApp("Olá, gostaria de saber mais sobre os cafés Minastra!"));
+    expect(whatsapp).toHaveAttribute("href", montarLinkWhatsApp("Olá, gostaria de saber mais sobre os cafés Minastra!", "5535999131028"));
     expect(whatsapp).toHaveAttribute("target", "_blank");
   });
 });

@@ -17,6 +17,18 @@ npm run dev
 
 Abra http://localhost:3000/.
 
+## Conteúdo do painel
+
+Título, subtítulo, o texto do Sobre, o Instagram e o celular (WhatsApp) vêm de
+`GET /public/sites/<slug>` da API da Azics:
+
+- no build, entram no HTML (bom para o Google e para as prévias de link no WhatsApp). Se a API
+  falhar, o build falha e o site no ar continua o último bom;
+- no navegador, o site confere a versão atual: uma edição no painel aparece em até 1 minuto;
+- o workflow roda sozinho toda segunda, para o HTML não ficar velho.
+
+Campo vazio no painel fica com o texto de `src/data/conteudo.ts`. Sem Instagram, o link some.
+
 ## Imagens
 
 As fotos originais ficam em `originais/` (fora do deploy). As versões leves que o site usa ficam em

@@ -10,6 +10,7 @@ import { Inicio } from "@/components/sections/Inicio";
 import { Origem } from "@/components/sections/Origem";
 import { Qualidade } from "@/components/sections/Qualidade";
 import { SITE } from "@/data/site";
+import { obterConteudoNoBuild } from "@/lib/conteudo";
 import { IMAGEM_COMPARTILHAR } from "@/lib/foto";
 import { CRIADOR_DO_SITE, montarDadosSite, ROBOTS_INDEXAR, serializarJsonLd } from "@/lib/seo";
 
@@ -38,10 +39,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home() {
+export default async function Home() {
+  const conteudo = await obterConteudoNoBuild();
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializarJsonLd(montarDadosSite()) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializarJsonLd(montarDadosSite(conteudo)) }} />
       <Header />
       <main>
         <Inicio />

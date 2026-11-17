@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { Produto } from "@/data/produtos";
+import type { Conteudo } from "./conteudo";
 import { SITE } from "@/data/site";
 
 // Quem fez o site. Fica no HTML (meta creator e JSON-LD), sem aparecer na tela.
@@ -10,7 +11,15 @@ export const ROBOTS_INDEXAR: Metadata["robots"] = { index: true, follow: true, "
 
 const ID_ORGANIZACAO = `${SITE.url}/#organizacao`;
 
-export function montarDadosSite() {
+// "5535999131028" → "+55 35 99913-1028" (o formato do JSON-LD de antes).
+export function formatarTelefone(celular: string): string {
+  const ddi = celular.slice(0, 2);
+  const ddd = celular.slice(2, 4);
+  const numero = celular.slice(4);
+  return `+${ddi} ${ddd} ${numero.slice(0, -4)}-${numero.slice(-4)}`;
+}
+
+export function montarDadosSite(conteudo: Conteudo) {
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -21,14 +30,14 @@ export function montarDadosSite() {
         url: `${SITE.url}/`,
         logo: `${SITE.url}/logo.png`,
         description: "Cafés especiais 100% arábica produzidos no Sítio Lagoa, em Alfenas, Sul de Minas.",
-        telephone: "+55 35 99913-1028",
+        telephone: formatarTelefone(conteudo.celular),
         address: {
           "@type": "PostalAddress",
           addressLocality: "Alfenas",
           addressRegion: "MG",
           addressCountry: "BR",
         },
-        sameAs: [SITE.instagram],
+        ...(conteudo.instagram ? { sameAs: [conteudo.instagram] } : {}),
       },
       {
         "@type": "WebSite",

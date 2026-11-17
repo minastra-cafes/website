@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Alegreya_SC, Inter } from "next/font/google";
+import { ConteudoProvider } from "@/components/ConteudoProvider";
 import { SITE } from "@/data/site";
+import { obterConteudoNoBuild } from "@/lib/conteudo";
 import "./globals.css";
 
 const inter = Inter({
@@ -33,10 +35,17 @@ export const viewport: Viewport = {
   themeColor: "#251711",
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+// O conteúdo do painel (título, subtítulo, Sobre, Instagram, celular) entra no HTML no build; o
+// ConteudoProvider confere a versão atual no navegador.
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const conteudo = await obterConteudoNoBuild();
   return (
     <html lang="pt-BR" translate="no" className={`${inter.variable} ${alegreya.variable}`}>
-      <body className="bg-minastra-paper font-sans text-minastra-espresso antialiased">{children}</body>
+      <body className="bg-minastra-paper font-sans text-minastra-espresso antialiased">
+        <ConteudoProvider slug={process.env.NEXT_PUBLIC_SITE_SLUG ?? "minastra"} inicial={conteudo}>
+          {children}
+        </ConteudoProvider>
+      </body>
     </html>
   );
 }

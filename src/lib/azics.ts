@@ -20,7 +20,40 @@ export type PaginaDeAvaliacoes = {
   media: number | null;
 };
 
+// GET /public/sites/{slug}: só os campos que o site usa. Nas seções, false é "desligada" e null é
+// "ligada, mas vazia".
+export type SitePublico = {
+  nome: string;
+  titulo: string;
+  subtitulo: string;
+  instagram_url: string | null;
+  celular: string | null;
+  sobre: { titulo: string; paragrafos: string[] } | false | null;
+};
+
 const URL_AVALIAR = "https://painel.azics.com.br/avaliar";
+
+function urlSitePublico(slug: string): string {
+  return `${process.env.NEXT_PUBLIC_API_URL}/public/sites/${encodeURIComponent(slug)}`;
+}
+
+// No navegador: qualquer falha vira null e a página fica com o texto que veio do build.
+export async function buscarSitePublico(slug: string): Promise<SitePublico | null> {
+  try {
+    const resposta = await fetch(urlSitePublico(slug));
+    if (!resposta.ok) return null;
+    return (await resposta.json()) as SitePublico;
+  } catch {
+    return null;
+  }
+}
+
+// No build: falha de propósito. O deploy para e o GitHub Pages continua com a última versão boa.
+export async function buscarSitePublicoNoBuild(slug: string): Promise<SitePublico> {
+  const resposta = await fetch(urlSitePublico(slug));
+  if (!resposta.ok) throw new Error(`API da Azics respondeu ${resposta.status} em /public/sites/${slug}`);
+  return (await resposta.json()) as SitePublico;
+}
 
 // Qualquer falha (404 de site ou de avaliações desligadas, 5xx, rede, JSON quebrado) vira null:
 // a seção some e o resto da página nunca quebra por causa da API.

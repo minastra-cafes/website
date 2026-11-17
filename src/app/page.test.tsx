@@ -19,18 +19,18 @@ describe("página inicial", () => {
     buscar.mockClear();
   });
 
-  it("não chama a API da Azics nos testes (no CI a URL é a de produção)", () => {
-    render(<Home />);
+  it("não chama a API da Azics nos testes (no CI a URL é a de produção)", async () => {
+    render(await Home());
     expect(buscar).not.toHaveBeenCalled();
   });
 
-  it("mostra o título principal", () => {
-    render(<Home />);
+  it("mostra o título principal", async () => {
+    render(await Home());
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("origem de verdade.");
   });
 
-  it("mostra os títulos de cada seção", () => {
-    render(<Home />);
+  it("mostra os títulos de cada seção", async () => {
+    render(await Home());
     for (const titulo of [
       "Um Minastra para cada momento.",
       "Você sabe de onde vem o seu café.",
@@ -42,16 +42,16 @@ describe("página inicial", () => {
     }
   });
 
-  it("tem os links do menu para as seções", () => {
-    render(<Home />);
+  it("tem os links do menu para as seções", async () => {
+    render(await Home());
     const menu = screen.getByRole("navigation", { name: "Navegação principal" });
     for (const destino of ["#cafes", "#origem", "#qualidade"]) {
       expect(within(menu).getAllByRole("link").some((link) => link.getAttribute("href") === destino)).toBe(true);
     }
   });
 
-  it("leva cada café para a página do produto", () => {
-    render(<Home />);
+  it("leva cada café para a página do produto", async () => {
+    render(await Home());
     // Fora do build o next/link não conhece o trailingSlash do next.config; a barra final é dele.
     const hrefs = screen.getAllByRole("link").map((link) => link.getAttribute("href")?.replace(/\/$/, ""));
     expect(hrefs).toEqual(expect.arrayContaining(["/produto/bronze", "/produto/ouro", "/produto/ouro-graos"]));

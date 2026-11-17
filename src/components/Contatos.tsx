@@ -1,4 +1,6 @@
-import { SITE } from "@/data/site";
+"use client";
+
+import { useConteudo } from "@/components/ConteudoProvider";
 import { montarLinkWhatsApp } from "@/lib/pedido";
 
 // A mesma mensagem do botão "saber mais" do site antigo.
@@ -26,13 +28,16 @@ const LINK = "inline-flex min-h-9 items-center gap-2 rounded-full border border-
 
 // Instagram e WhatsApp lado a lado, no rodapé da inicial e da página de produto.
 export function Contatos({ className = "" }: { className?: string }) {
+  const { instagram, celular } = useConteudo();
   return (
     <div className={`flex flex-wrap items-center gap-2 ${className}`}>
-      <a href={SITE.instagram} target="_blank" rel="noopener noreferrer" className={LINK}>
-        <IconeInstagram />
-        Instagram
-      </a>
-      <a href={montarLinkWhatsApp(MENSAGEM_CONTATO)} target="_blank" rel="noopener noreferrer" className={LINK}>
+      {instagram && (
+        <a href={instagram} target="_blank" rel="noopener noreferrer" className={LINK}>
+          <IconeInstagram />
+          Instagram
+        </a>
+      )}
+      <a href={montarLinkWhatsApp(MENSAGEM_CONTATO, celular)} target="_blank" rel="noopener noreferrer" className={LINK}>
         <IconeWhatsApp />
         WhatsApp
       </a>
