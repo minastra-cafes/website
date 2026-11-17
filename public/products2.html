@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Endereço antigo das páginas de produto: só redireciona para /website/produto/<id>/. -->
+    <meta name="robots" content="noindex" />
+    <title>Minastra Cafés Especiais</title>
+    <script>
+      (function () {
+        var produtos = ["bronze", "ouro", "ouro-graos"];
+        var id = new URLSearchParams(window.location.search).get("produto");
+        var destino = produtos.indexOf(id) >= 0 ? "/website/produto/" + id + "/" : "/website/#cafes";
+        window.location.replace(destino);
+      })();
+    </script>
+  </head>
+  <body>
+    <noscript><a href="/website/">Ir para o site da Minastra</a></noscript>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+/* As mesmas cores, sombras e fonte de título do tailwind.config que o site usava pelo CDN. */
+@theme {
+  --color-minastra-espresso: #251711;
+  --color-minastra-brown: #6f2f1f;
+  --color-minastra-clay: #a35f3c;
+  --color-minastra-gold: #d3aa5c;
+  --color-minastra-cream: #f3eadc;
+  --color-minastra-paper: #fffaf2;
+  --color-minastra-leaf: #183f2a;
+  --color-minastra-moss: #2e5a38;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: Georgia, "Times New Roman", serif;
+
+  --shadow-soft: 0 20px 60px rgba(37, 23, 17, 0.1);
+  --shadow-card: 0 14px 40px rgba(37, 23, 17, 0.12);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* O Tailwind v4 tirou o cursor de mãozinha dos botões; o site antigo (v3) tinha. */
+button:not(:disabled),
+[role="button"]:not(:disabled) {
+  cursor: pointer;
+}
+
+.brand {
+  font-family: var(--font-alegreya-sc), Georgia, serif;
+  /* A inicial só carregava a 500; a 400 é do "MINASTRA" da página de produto. */
+  font-weight: 500;
+}
+
+.surface {
+  background-image:
+    radial-gradient(circle at 5% 5%, rgba(211, 170, 92, 0.14), transparent 24%),
+    radial-gradient(circle at 95% 25%, rgba(24, 63, 42, 0.08), transparent 24%);
+}
+
+/* A página de produto antiga tinha a própria paleta, um pouco diferente da inicial. */
+.paleta-produto {
+  --color-minastra-espresso: #2b1d16;
+  --color-minastra-clay: #9b5b37;
+  --color-minastra-gold: #caa052;
+  --color-minastra-cream: #f7efe4;
+  --color-minastra-paper: #fff8ed;
+}
+
+.alegreya-sc {
+  font-family: var(--font-alegreya-sc), serif;
+}
+
+.grain-bg {
+  background-image:
+    radial-gradient(circle at 18% 12%, rgba(202, 160, 82, 0.18), transparent 22%),
+    radial-gradient(circle at 88% 10%, rgba(24, 63, 42, 0.12), transparent 20%),
+    linear-gradient(180deg, #fff8ed 0%, #f7efe4 100%);
+}

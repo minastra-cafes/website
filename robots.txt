@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://minastra-cafes.github.io/website/sitemap.xml
