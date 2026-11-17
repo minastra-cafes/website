@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CreditoAzics } from "@/components/CreditoAzics";
 import { caminhoPublico } from "@/lib/caminho";
 
 // A página de produto do site antigo tinha cores um pouco diferentes da inicial (ver .paleta-produto
@@ -32,9 +33,10 @@ export function MolduraProduto({ comCabecalho = true, children }: { comCabecalho
 
       {children}
 
-      <footer className="bg-minastra-espresso px-6 py-8 text-center text-sm text-minastra-paper/60">
+      <footer className="bg-minastra-espresso px-6 py-6 text-center text-sm text-minastra-paper/60">
         <p>© 2026 Minastra Cafés Especiais</p>
-        <p className="mt-2">Simples. Puro. Intenso.</p>
+        <p className="mt-1">Simples. Puro. Intenso.</p>
+        <CreditoAzics className="mt-3" />
       </footer>
     </div>
   );

@@ -1,5 +1,10 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { MolduraProduto } from "@/components/produto/MolduraProduto";
+
+export const metadata: Metadata = {
+  title: "Página não encontrada | Minastra Cafés Especiais",
+};
 
 // O bloco "Produto não encontrado" da página de produto antiga, que agora serve de 404 do site.
 export default function NaoEncontrado() {

@@ -10,6 +10,7 @@ import { Inicio } from "@/components/sections/Inicio";
 import { Origem } from "@/components/sections/Origem";
 import { Qualidade } from "@/components/sections/Qualidade";
 import { SITE } from "@/data/site";
+import { CRIADOR_DO_SITE, montarDadosSite, ROBOTS_INDEXAR, serializarJsonLd } from "@/lib/seo";
 
 const TITULO = "Minastra | Cafés especiais do Sul de Minas";
 
@@ -17,6 +18,8 @@ export const metadata: Metadata = {
   title: TITULO,
   description: "Cafés especiais 100% arábica, produzidos em pequena escala no Sítio Lagoa, em Alfenas, Sul de Minas.",
   alternates: { canonical: `${SITE.url}/` },
+  robots: ROBOTS_INDEXAR,
+  creator: CRIADOR_DO_SITE.nome,
   openGraph: {
     locale: "pt_BR",
     type: "website",
@@ -34,26 +37,10 @@ export const metadata: Metadata = {
   },
 };
 
-const ORGANIZACAO = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: SITE.nome,
-  url: `${SITE.url}/`,
-  logo: `${SITE.url}/logo.png`,
-  description: "Cafés especiais 100% arábica produzidos no Sítio Lagoa, em Alfenas, Sul de Minas.",
-  telephone: "+55 35 99913-1028",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Alfenas",
-    addressRegion: "MG",
-    addressCountry: "BR",
-  },
-};
-
 export default function Home() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZACAO).replace(/</g, "\\u003c") }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializarJsonLd(montarDadosSite()) }} />
       <Header />
       <main>
         <Inicio />

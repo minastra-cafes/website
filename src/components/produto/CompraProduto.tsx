@@ -52,7 +52,7 @@ export function CompraProduto({ produto }: { produto: Produto }) {
         <section className="rounded-[2rem] border border-minastra-brown/10 bg-minastra-paper p-6 shadow-[0_20px_50px_rgba(43,29,22,.08)] sm:p-8 lg:sticky lg:top-24">
           <span className="inline-flex bg-minastra-gold px-3 py-1 text-[10px] font-bold uppercase tracking-[0.22em] text-minastra-espresso">{produto.torra}</span>
 
-          <h2 className="mt-5 font-display text-4xl font-bold leading-tight text-minastra-brown sm:text-5xl sm:leading-none">{produto.nome}</h2>
+          <h1 className="mt-5 font-display text-4xl font-bold leading-tight text-minastra-brown sm:text-5xl sm:leading-none">{produto.nome}</h1>
           <p className="mt-4 text-[15px] leading-7 text-[#654638] sm:text-lg sm:leading-8">{produto.descricao}</p>
 
           <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-xs font-semibold text-minastra-brown/70">

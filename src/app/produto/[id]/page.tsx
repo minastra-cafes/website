@@ -5,6 +5,7 @@ import { CompraProduto } from "@/components/produto/CompraProduto";
 import { MolduraProduto } from "@/components/produto/MolduraProduto";
 import { buscarProduto, PRODUTOS } from "@/data/produtos";
 import { SITE } from "@/data/site";
+import { CRIADOR_DO_SITE, montarDadosProduto, montarDescricaoProduto, ROBOTS_INDEXAR, serializarJsonLd } from "@/lib/seo";
 
 // Export estático: só existem as páginas geradas aqui; qualquer outro id cai no 404.
 export const dynamicParams = false;
@@ -26,12 +27,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const url = `${SITE.url}/produto/${produto.id}/`;
   const imagem = `${SITE.url}${produto.fotos[0]}`;
   const tituloSeo = `${produto.nome} | Café especial Minastra`;
-  const descricao = `${produto.descricao} Café 100% arábica produzido em Alfenas, Sul de Minas.`;
+  const descricao = montarDescricaoProduto(produto);
 
   return {
     title: `${produto.nome} | Minastra Cafés Especiais`,
     description: descricao,
     alternates: { canonical: url },
+    robots: ROBOTS_INDEXAR,
+    creator: CRIADOR_DO_SITE.nome,
     openGraph: {
       locale: "pt_BR",
       // O og:type "product" do site antigo não existe no Next; "website" é o que ele aceita.
@@ -56,26 +59,9 @@ export default async function PaginaProduto({ params }: Props) {
   const produto = buscarProduto((await params).id);
   if (!produto) notFound();
 
-  const url = `${SITE.url}/produto/${produto.id}/`;
-  const dadosEstruturados = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: produto.nome,
-    description: produto.descricao,
-    image: produto.fotos.map((foto) => `${SITE.url}${foto}`),
-    brand: { "@type": "Brand", name: "Minastra" },
-    offers: Object.entries(produto.pesoValores).map(([peso, valor]) => ({
-      "@type": "Offer",
-      url,
-      priceCurrency: "BRL",
-      price: valor.toFixed(2),
-      name: `${produto.nome} ${peso}g`,
-    })),
-  };
-
   return (
     <MolduraProduto>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dadosEstruturados).replace(/</g, "\\u003c") }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializarJsonLd(montarDadosProduto(produto)) }} />
       <main className="grain-bg px-4 pb-28 pt-5 sm:px-8 sm:pb-10 sm:pt-8 lg:px-10 lg:py-12">
         <div className="mx-auto max-w-md sm:max-w-2xl lg:max-w-7xl">
           <nav className="mb-5 flex items-center gap-2 text-xs text-minastra-brown/60" aria-label="Navegação estrutural">

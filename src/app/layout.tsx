@@ -21,7 +21,6 @@ const alegreya = Alegreya_SC({
 
 export const metadata: Metadata = {
   metadataBase: new URL(`${SITE.url}/`),
-  robots: { index: true, follow: true, "max-image-preview": "large" },
   authors: [{ name: SITE.nome }],
   icons: { icon: `${SITE.url}/favicon.png` },
   other: { google: "notranslate" },
