@@ -1,14 +1,18 @@
 "use client";
 
 import { useConteudo } from "@/components/ConteudoProvider";
+import { item, itemLateral } from "@/components/item";
+import { Revelar } from "@/components/Revelar";
 import { foto } from "@/lib/foto";
 
 export function Origem() {
   const { sobre } = useConteudo();
   return (
     <section id="origem" className="scroll-mt-16 bg-minastra-espresso px-5 py-16 text-minastra-paper sm:px-8 sm:py-24 lg:px-10">
+      {/* Dois blocos: o selo desliza quando a foto aparece; o texto sobe quando ele chega à tela
+          (no celular a foto vem antes, então o texto não pode depender dela). A foto não some. */}
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:gap-20">
-        <div className="relative">
+        <Revelar className="relative">
           <img
             {...foto("localizacao")}
             sizes="(min-width: 1024px) 50vw, 100vw"
@@ -16,16 +20,27 @@ export function Origem() {
             loading="lazy"
             className="h-[22rem] w-full rounded-3xl object-cover sm:h-[34rem]"
           />
-          <div className="absolute -bottom-5 left-5 rounded-2xl bg-minastra-gold p-4 text-minastra-espresso shadow-xl sm:left-auto sm:right-5">
+          <div
+            data-item
+            className={`absolute -bottom-5 left-5 rounded-2xl bg-minastra-gold p-4 text-minastra-espresso shadow-xl sm:left-auto sm:right-5 ${itemLateral}`}
+          >
             <strong className="block font-display text-2xl">Alfenas · MG</strong>
             <span className="text-xs font-semibold">Sítio Lagoa, Sul de Minas</span>
           </div>
-        </div>
-        <div>
-          <p className="text-xs font-bold uppercase tracking-[.22em] text-minastra-gold">Da terra para a xícara</p>
-          <h2 className="mt-4 font-display text-4xl font-bold leading-tight sm:text-6xl sm:leading-none">{sobre.titulo}</h2>
+        </Revelar>
+        <Revelar>
+          <p data-item className={`text-xs font-bold uppercase tracking-[.22em] text-minastra-gold ${item}`}>
+            Da terra para a xícara
+          </p>
+          <h2 data-item className={`mt-4 font-display text-4xl font-bold leading-tight sm:text-6xl sm:leading-none ${item}`}>
+            {sobre.titulo}
+          </h2>
           {sobre.paragrafos.map((paragrafo, indice) => (
-            <p key={indice} className={`${indice === 0 ? "mt-6" : "mt-4"} text-base leading-8 text-minastra-paper/70 sm:text-lg sm:leading-7`}>
+            <p
+              key={indice}
+              data-item
+              className={`${indice === 0 ? "mt-6" : "mt-4"} text-base leading-8 text-minastra-paper/70 sm:text-lg sm:leading-7 ${item}`}
+            >
               {paragrafo}
             </p>
           ))}
@@ -39,7 +54,7 @@ export function Origem() {
               <span className="mt-1 block text-xs text-minastra-paper/55">Do campo à torra</span>
             </div>
           </div>
-        </div>
+        </Revelar>
       </div>
     </section>
   );

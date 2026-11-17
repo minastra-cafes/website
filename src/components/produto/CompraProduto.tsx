@@ -30,6 +30,22 @@ export function CompraProduto({ produto }: { produto: Produto }) {
 
   const pacotes = normalizarQuantidade(Number(quantidade));
   const total = formatarMoeda(calcularTotal(produto, peso, pacotes));
+  // O total "pula" a cada troca de peso ou quantidade (até voltando ao valor de antes): a key nova
+  // recria o elemento e refaz a animação. Na primeira pintura ele fica parado.
+  const [trocas, setTrocas] = useState(0);
+  const classePulo = trocas > 0 ? "pulo" : "";
+
+  function trocarPeso(novo: string) {
+    if (novo === peso) return;
+    setPeso(novo);
+    setTrocas((anterior) => anterior + 1);
+  }
+
+  // O campo pode mudar sem mudar o total (apagar o número conta como 1 pacote): aí não pula.
+  function trocarQuantidade(nova: string) {
+    setQuantidade(nova);
+    if (normalizarQuantidade(Number(nova)) !== pacotes) setTrocas((anterior) => anterior + 1);
+  }
   const { celular } = useConteudo();
   const linkWhatsApp = montarLinkWhatsApp(montarMensagemPedido(produto, peso, pacotes), celular);
 
@@ -101,8 +117,8 @@ export function CompraProduto({ produto }: { produto: Produto }) {
                   key={item}
                   type="button"
                   aria-pressed={item === peso}
-                  onClick={() => setPeso(item)}
-                  className={`rounded-[1.2rem] border-2 p-4 text-left transition ${FOCO} ${
+                  onClick={() => trocarPeso(item)}
+                  className={`motion-safe:active:scale-[0.98] rounded-[1.2rem] border-2 p-4 text-left transition ${FOCO} ${
                     item === peso
                       ? "border-minastra-espresso bg-minastra-espresso text-minastra-paper"
                       : "border-minastra-brown/20 bg-minastra-cream text-minastra-espresso"
@@ -123,7 +139,7 @@ export function CompraProduto({ produto }: { produto: Produto }) {
               <button
                 type="button"
                 aria-label="Diminuir quantidade"
-                onClick={() => setQuantidade(String(Math.max(1, pacotes - 1)))}
+                onClick={() => trocarQuantidade(String(Math.max(1, pacotes - 1)))}
                 className="h-12 w-14 text-2xl font-bold text-minastra-brown"
               >
                 −
@@ -133,14 +149,14 @@ export function CompraProduto({ produto }: { produto: Produto }) {
                 type="number"
                 min="1"
                 value={quantidade}
-                onChange={(evento) => setQuantidade(evento.target.value)}
+                onChange={(evento) => trocarQuantidade(evento.target.value)}
                 onBlur={() => setQuantidade(String(pacotes))}
                 className="h-12 w-20 bg-transparent text-center text-lg font-bold outline-none"
               />
               <button
                 type="button"
                 aria-label="Aumentar quantidade"
-                onClick={() => setQuantidade(String(pacotes + 1))}
+                onClick={() => trocarQuantidade(String(pacotes + 1))}
                 className="h-12 w-14 text-2xl font-bold text-minastra-brown"
               >
                 +
@@ -151,7 +167,7 @@ export function CompraProduto({ produto }: { produto: Produto }) {
           <div className="mt-7 rounded-[1.4rem] bg-minastra-espresso p-5 text-minastra-paper">
             <div className="flex items-center justify-between gap-4">
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-minastra-gold">Total</span>
-              <strong data-testid="total" className="font-display text-3xl text-minastra-gold sm:text-4xl">
+              <strong key={trocas} data-testid="total" className={`font-display text-3xl text-minastra-gold sm:text-4xl ${classePulo}`}>
                 {total}
               </strong>
             </div>
@@ -159,7 +175,7 @@ export function CompraProduto({ produto }: { produto: Produto }) {
               href={linkWhatsApp}
               target="_blank"
               rel="noopener"
-              className={`mt-5 flex min-h-14 w-full items-center justify-center rounded-full bg-minastra-gold px-5 py-4 text-center text-sm font-bold uppercase tracking-[0.15em] text-minastra-espresso transition hover:bg-minastra-paper ${FOCO}`}
+              className={`motion-safe:active:scale-[0.98] mt-5 flex min-h-14 w-full items-center justify-center rounded-full bg-minastra-gold px-5 py-4 text-center text-sm font-bold uppercase tracking-[0.15em] text-minastra-espresso transition hover:bg-minastra-paper ${FOCO}`}
             >
               Comprar no WhatsApp
             </a>
@@ -172,13 +188,15 @@ export function CompraProduto({ produto }: { produto: Produto }) {
         <div className="mx-auto flex max-w-md items-center gap-3">
           <div className="min-w-0 flex-1">
             <span className="block text-[10px] font-bold uppercase tracking-wider text-minastra-brown/55">Total</span>
-            <strong className="font-display text-2xl text-minastra-brown">{total}</strong>
+            <strong key={trocas} className={`font-display text-2xl text-minastra-brown ${classePulo}`}>
+              {total}
+            </strong>
           </div>
           <a
             href={linkWhatsApp}
             target="_blank"
             rel="noopener"
-            className="flex min-h-12 items-center justify-center rounded-full bg-minastra-gold px-5 text-xs font-bold uppercase tracking-wider text-minastra-espresso"
+            className="flex min-h-12 items-center justify-center rounded-full bg-minastra-gold px-5 text-xs font-bold uppercase tracking-wider text-minastra-espresso transition motion-safe:active:scale-[0.98]"
           >
             Comprar
           </a>

@@ -132,3 +132,13 @@ describe("Avaliacoes", () => {
     expect(screen.getByText(texto)).toHaveClass("break-words");
   });
 });
+
+describe("média para leitor de tela", () => {
+  it("o número que conta fica escondido do leitor de tela; as estrelas anunciam a nota final", async () => {
+    buscar.mockResolvedValue(pagina());
+    renderizar();
+    await esperarSecao();
+    expect(screen.getByText("5,0")).toHaveAttribute("aria-hidden", "true");
+    expect(screen.getAllByRole("img", { name: "Nota 5 de 5" }).length).toBeGreaterThan(0);
+  });
+});

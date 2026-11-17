@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { item, toque } from "@/components/item";
+import { Revelar } from "@/components/Revelar";
 import { buscarProduto } from "@/data/produtos";
 import { foto as fotoDe, type NomeFoto } from "@/lib/foto";
 import { formatarMoeda } from "@/lib/pedido";
@@ -68,8 +70,8 @@ function CartaoCafe({ cartao }: { cartao: Cartao }) {
       href={`/produto/${cartao.id}/`}
       className={
         escuro
-          ? "group overflow-hidden rounded-3xl border border-minastra-gold/40 bg-minastra-espresso text-minastra-paper shadow-card transition duration-300 hover:-translate-y-2 hover:shadow-soft"
-          : "group overflow-hidden rounded-3xl border border-minastra-brown/10 bg-minastra-paper shadow-card transition duration-300 hover:-translate-y-2 hover:shadow-soft"
+          ? `${toque} group block h-full overflow-hidden rounded-3xl border border-minastra-gold/40 bg-minastra-espresso text-minastra-paper shadow-card transition duration-300 hover:-translate-y-2 hover:shadow-soft`
+          : `${toque} group block h-full overflow-hidden rounded-3xl border border-minastra-brown/10 bg-minastra-paper shadow-card transition duration-300 hover:-translate-y-2 hover:shadow-soft`
       }
     >
       <div className={escuro ? "relative overflow-hidden p-3" : "relative overflow-hidden bg-minastra-espresso p-3"}>
@@ -121,19 +123,21 @@ export function Cafes() {
   return (
     <section id="cafes" className="surface scroll-mt-16 px-5 py-16 sm:px-8 sm:py-24 lg:px-10">
       <div className="mx-auto max-w-7xl">
-        <div className="max-w-3xl">
-          <p className="text-xs font-bold uppercase tracking-[.22em] text-minastra-brown">Escolha pelo seu paladar</p>
-          <h2 className="mt-4 font-display text-4xl font-bold leading-tight tracking-[-.025em] sm:text-6xl sm:leading-none">Um Minastra para cada momento.</h2>
-          <p className="mt-5 max-w-2xl text-base leading-7 text-minastra-brown/75 sm:text-lg">
+        <Revelar className="max-w-3xl">
+          <p data-item className={`text-xs font-bold uppercase tracking-[.22em] text-minastra-brown ${item}`}>Escolha pelo seu paladar</p>
+          <h2 data-item className={`mt-4 font-display text-4xl font-bold leading-tight tracking-[-.025em] sm:text-6xl sm:leading-none ${item}`}>Um Minastra para cada momento.</h2>
+          <p data-item className={`mt-5 max-w-2xl text-base leading-7 text-minastra-brown/75 sm:text-lg ${item}`}>
             Perfis claros, compra rápida e café fresco. Selecione o que combina com você.
           </p>
-        </div>
+        </Revelar>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
+        <Revelar className="mt-10 grid gap-6 md:grid-cols-3">
           {CARTOES.map((cartao) => (
-            <CartaoCafe key={cartao.id} cartao={cartao} />
+            <div key={cartao.id} data-item className={item}>
+              <CartaoCafe cartao={cartao} />
+            </div>
           ))}
-        </div>
+        </Revelar>
       </div>
     </section>
   );

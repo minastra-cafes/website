@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { CONTEUDO_PADRAO } from "@/data/conteudo";
 import { PRODUTOS } from "@/data/produtos";
 import type { Conteudo } from "@/lib/conteudo";
@@ -37,7 +37,8 @@ describe("conteúdo do painel na página", () => {
     renderComConteudo(<Inicio />);
     const titulo = screen.getByRole("heading", { level: 1 });
     expect(titulo).toHaveTextContent("Um café que conta a história da fazenda.");
-    expect(within(titulo).getByText("história da fazenda.")).toHaveClass("text-minastra-gold");
+    // As palavras ficam em spans separados (animação palavra por palavra); o destaque reúne as três últimas.
+    expect(titulo.querySelector(".text-minastra-gold")).toHaveTextContent("história da fazenda.");
     expect(screen.getByText("Subtítulo escrito no painel.")).toBeInTheDocument();
   });
 

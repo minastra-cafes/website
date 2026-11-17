@@ -106,3 +106,29 @@ describe("fotos dos cafés", () => {
     expect(fotos("ouro")).toEqual(["/images/produto-ouro-1200.webp"]);
   });
 });
+
+describe("total animado", () => {
+  it("o total recomeça a animação a cada troca e mostra o valor certo", async () => {
+    const ouro = PRODUTOS.find((produto) => produto.id === "ouro")!;
+    render(<CompraProduto produto={ouro} />);
+    const antes = screen.getByTestId("total");
+    await userEvent.click(screen.getByRole("button", { name: /250g/ }));
+    await userEvent.click(screen.getByRole("button", { name: /500g/ }));
+    const depois = screen.getByTestId("total");
+    expect(depois).not.toBe(antes);
+    expect(depois).toHaveClass("pulo");
+    expect(depois.textContent).toBe("R$ 48,00");
+  });
+});
+
+describe("total parado quando nada muda", () => {
+  it("tocar no peso já escolhido ou no − com 1 pacote não faz o total pular", async () => {
+    const ouro = PRODUTOS.find((produto) => produto.id === "ouro")!;
+    render(<CompraProduto produto={ouro} />);
+    const antes = screen.getByTestId("total");
+    await userEvent.click(screen.getByRole("button", { name: /500g/ }));
+    await userEvent.click(screen.getByRole("button", { name: "Diminuir quantidade" }));
+    expect(screen.getByTestId("total")).toBe(antes);
+    expect(antes).not.toHaveClass("pulo");
+  });
+});

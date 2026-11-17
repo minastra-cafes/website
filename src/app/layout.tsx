@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Alegreya_SC, Inter } from "next/font/google";
+import Script from "next/script";
 import { ConteudoProvider } from "@/components/ConteudoProvider";
 import { SITE } from "@/data/site";
 import { obterConteudoNoBuild } from "@/lib/conteudo";
@@ -31,6 +32,11 @@ export const metadata: Metadata = {
   other: { google: "notranslate" },
 };
 
+// Liga as animações de entrada só com JS. Se o bundle não carregar em 3 s, tira a classe para o
+// conteúdo nunca ficar escondido (o mesmo script da Azics).
+const scriptJs =
+  "var d=document.documentElement;d.classList.add('js');setTimeout(function(){if(d.dataset.revelarPronto===undefined)d.classList.remove('js')},3000)";
+
 export const viewport: Viewport = {
   themeColor: "#251711",
 };
@@ -40,11 +46,12 @@ export const viewport: Viewport = {
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const conteudo = await obterConteudoNoBuild();
   return (
-    <html lang="pt-BR" translate="no" className={`${inter.variable} ${alegreya.variable}`}>
+    <html lang="pt-BR" translate="no" className={`${inter.variable} ${alegreya.variable}`} suppressHydrationWarning>
       <body className="bg-minastra-paper font-sans text-minastra-espresso antialiased">
         <ConteudoProvider slug={process.env.NEXT_PUBLIC_SITE_SLUG ?? "minastra"} inicial={conteudo}>
           {children}
         </ConteudoProvider>
+        <Script id="js-ativo" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: scriptJs }} />
       </body>
     </html>
   );

@@ -16,10 +16,17 @@
 
   --shadow-soft: 0 20px 60px rgba(37, 23, 17, 0.1);
   --shadow-card: 0 14px 40px rgba(37, 23, 17, 0.12);
+
+  --ease-saida: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-html {
-  scroll-behavior: smooth;
+/* Itens de <Revelar> ainda fora da tela; só com JS (classe `js` no <html>). */
+@custom-variant escondido (html.js [data-revelar]:not([data-visivel]) &);
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 /* O Tailwind v4 tirou o cursor de mãozinha dos botões; o site antigo (v3) tinha. */
@@ -66,4 +73,78 @@ button:not(:disabled),
 }
 .sem-barra::-webkit-scrollbar {
   display: none;
+}
+
+/* Topo: o título sobe palavra por palavra e as palavras douradas recebem um brilho que passa uma
+   vez. Só CSS, então começa no primeiro desenho da tela; com "reduzir movimento", nada se move. */
+.palavra {
+  display: inline-block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .palavra {
+    animation: subir-palavra 600ms var(--ease-saida) both;
+  }
+
+  .brilho {
+    background-image: linear-gradient(110deg, var(--color-minastra-gold) 40%, var(--color-minastra-paper) 50%, var(--color-minastra-gold) 60%);
+    background-size: 250% 100%;
+    background-position: 100% 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: brilho 700ms ease-out both;
+  }
+
+  .entrar {
+    animation: entrar 700ms var(--ease-saida) both;
+  }
+
+  /* A foto aparece desde o início (não atrasa o carregamento); só se move, devagar. */
+  .zoom-lento {
+    animation: zoom-lento 20s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes subir-palavra {
+  from {
+    opacity: 0;
+    translate: 0 0.6em;
+  }
+}
+
+@keyframes brilho {
+  to {
+    background-position: 0 0;
+  }
+}
+
+@keyframes entrar {
+  from {
+    opacity: 0;
+    translate: 0 1rem;
+  }
+}
+
+@keyframes zoom-lento {
+  to {
+    scale: 1.06;
+  }
+}
+
+/* Total do produto: "pula" quando muda o peso ou a quantidade. */
+.pulo {
+  display: inline-block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .pulo {
+    animation: pulo 300ms ease-out;
+  }
+}
+
+@keyframes pulo {
+  50% {
+    scale: 1.08;
+  }
 }

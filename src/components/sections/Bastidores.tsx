@@ -1,3 +1,5 @@
+import { item } from "@/components/item";
+import { Revelar } from "@/components/Revelar";
 import { VideoPreguicoso } from "@/components/VideoPreguicoso";
 import { foto, VIDEO_COLHEDEIRA } from "@/lib/foto";
 
@@ -8,15 +10,15 @@ export function Bastidores() {
   return (
     <section className="overflow-hidden bg-minastra-cream px-5 py-16 sm:px-8 sm:py-24 lg:px-10">
       <div className="mx-auto max-w-7xl">
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+        <Revelar className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
-            <p className="text-xs font-bold uppercase tracking-[.22em] text-minastra-brown">Por trás da Minastra</p>
-            <h2 className="mt-4 font-display text-4xl font-bold leading-tight tracking-[-.025em] sm:text-6xl sm:leading-none">Café feito por pessoas, não por atalhos.</h2>
+            <p data-item className={`text-xs font-bold uppercase tracking-[.22em] text-minastra-brown ${item}`}>Por trás da Minastra</p>
+            <h2 data-item className={`mt-4 font-display text-4xl font-bold leading-tight tracking-[-.025em] sm:text-6xl sm:leading-none ${item}`}>Café feito por pessoas, não por atalhos.</h2>
           </div>
-          <p className="max-w-md text-sm leading-7 text-minastra-brown/70 sm:text-base sm:leading-6">
+          <p data-item className={`max-w-md text-sm leading-7 text-minastra-brown/70 sm:text-base sm:leading-6 ${item}`}>
             Da lavoura à torrefação, estas são as mãos, os lugares e os processos que dão identidade a cada pacote.
           </p>
-        </div>
+        </Revelar>
 
         <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
           <figure className="group relative col-span-2 overflow-hidden rounded-3xl lg:row-span-2">
