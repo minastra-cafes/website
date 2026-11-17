@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type { Produto } from "@/data/produtos";
 import { calcularTotal, formatarMoeda, montarLinkWhatsApp, montarMensagemPedido, normalizarQuantidade } from "@/lib/pedido";
 
@@ -9,7 +9,21 @@ const FOCO = "focus:outline-none focus:ring-4 focus:ring-minastra-gold/30";
 export function CompraProduto({ produto }: { produto: Produto }) {
   const pesos = Object.keys(produto.pesoValores);
   const [peso, setPeso] = useState(pesos[pesos.length - 1]);
-  const [foto, setFoto] = useState(produto.fotos[0]);
+  const faixa = useRef<HTMLDivElement>(null);
+  const [atual, setAtual] = useState(0);
+
+  function irParaFoto(indice: number) {
+    setAtual(indice);
+    const elemento = faixa.current;
+    elemento?.scrollTo({ left: indice * elemento.clientWidth, behavior: "smooth" });
+  }
+
+  // Quem desliza com o dedo muda a foto: a miniatura acompanha a que ficou na tela.
+  function acompanharFaixa() {
+    const elemento = faixa.current;
+    if (!elemento || elemento.clientWidth === 0) return;
+    setAtual(Math.round(elemento.scrollLeft / elemento.clientWidth));
+  }
   // Texto do campo: deixa a pessoa apagar e digitar; a conta usa o número normalizado.
   const [quantidade, setQuantidade] = useState("1");
 
@@ -25,15 +39,27 @@ export function CompraProduto({ produto }: { produto: Produto }) {
           className="overflow-hidden rounded-[2rem] border-4 border-minastra-paper bg-minastra-paper shadow-[0_24px_60px_rgba(43,29,22,.14)]"
         >
           <div className="bg-minastra-espresso p-4">
-            <img
-              src={foto.src}
-              srcSet={foto.srcSet}
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              alt={produto.nome}
-              decoding="async"
-              fetchPriority="high"
-              className="h-[22rem] w-full rounded-[1.4rem] object-cover sm:h-[32rem]"
-            />
+            {/* Faixa que desliza para o lado no celular (scroll-snap); as miniaturas levam até cada foto. */}
+            <div
+              ref={faixa}
+              data-testid="faixa-fotos"
+              onScroll={acompanharFaixa}
+              className="sem-barra flex snap-x snap-mandatory overflow-x-auto rounded-[1.4rem]"
+            >
+              {produto.fotos.map((item, indice) => (
+                <img
+                  key={item.src}
+                  src={item.src}
+                  srcSet={item.srcSet}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  alt={produto.fotos.length > 1 ? `${produto.nome}, foto ${indice + 1} de ${produto.fotos.length}` : produto.nome}
+                  decoding="async"
+                  fetchPriority={indice === 0 ? "high" : "low"}
+                  loading={indice === 0 ? "eager" : "lazy"}
+                  className="h-[22rem] w-full shrink-0 snap-center rounded-[1.4rem] object-cover sm:h-[32rem]"
+                />
+              ))}
+            </div>
           </div>
           <div className="grid grid-cols-4 gap-3 p-4">
             {produto.fotos.map((item, indice) => (
@@ -41,8 +67,9 @@ export function CompraProduto({ produto }: { produto: Produto }) {
                 key={item.src}
                 type="button"
                 aria-label={`Ver foto ${indice + 1} de ${produto.nome}`}
-                onClick={() => setFoto(item)}
-                className={`overflow-hidden rounded-xl border-2 bg-minastra-cream p-1 transition ${FOCO} ${item.src === foto.src ? "border-minastra-gold" : "border-transparent"}`}
+                aria-current={indice === atual ? "true" : undefined}
+                onClick={() => irParaFoto(indice)}
+                className={`overflow-hidden rounded-xl border-2 bg-minastra-cream p-1 transition ${FOCO} ${indice === atual ? "border-minastra-gold" : "border-transparent"}`}
               >
                 <img src={item.src} srcSet={item.srcSet} sizes="120px" alt="" className="aspect-square w-full rounded-lg object-cover" />
               </button>

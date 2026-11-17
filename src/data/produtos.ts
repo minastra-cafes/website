@@ -18,7 +18,7 @@ export const PRODUTOS: Produto[] = [
     torra: "Torra Média Escura",
     descricao:
       "Sabor intenso e encorpado do café tradicional, mas com um toque mais doce e um perfil que combina com o dia a dia — o café perfeito para as manhãs.",
-    fotos: [foto("produto-bronze")],
+    fotos: [foto("produto-bronze-pacote"), foto("produto-bronze")],
     pesoValores: { "250": 20, "500": 39 },
   },
   {
@@ -36,7 +36,7 @@ export const PRODUTOS: Produto[] = [
     torra: "Média Clara · Grão",
     descricao:
       "As mesmas notas doces de chocolate, mel e frescor da versão moída. Em grãos para quem prefere moer na hora e preservar toda a frescura e aroma do café.",
-    fotos: [foto("produto-ouro-graos")],
+    fotos: [foto("produto-ouro-graos-pacote"), foto("produto-ouro-graos")],
     pesoValores: { "250": 25, "500": 48 },
   },
 ];

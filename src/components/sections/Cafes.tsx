@@ -24,10 +24,10 @@ const CARTOES: Cartao[] = [
     texto: "Encorpado, naturalmente doce e perfeito para o café de todos os dias.",
     preco: "R$ 20,00",
     selo: "Intenso",
-    foto: "produto-bronze",
+    foto: "produto-bronze-pacote",
     alt: "Pacote Linha Bronze",
-    largura: 856,
-    altura: 1200,
+    largura: 1152,
+    altura: 1468,
   },
   {
     id: "ouro",
@@ -49,10 +49,10 @@ const CARTOES: Cartao[] = [
     texto: "Para moer na hora e preservar toda a complexidade, frescor e aroma.",
     preco: "R$ 25,00",
     selo: "Em grãos",
-    foto: "produto-ouro-graos",
+    foto: "produto-ouro-graos-pacote",
     alt: "Linha Ouro em grãos",
-    largura: 1200,
-    altura: 1080,
+    largura: 1152,
+    altura: 1510,
   },
 ];
 

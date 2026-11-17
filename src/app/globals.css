@@ -59,3 +59,11 @@ button:not(:disabled),
     radial-gradient(circle at 88% 10%, rgba(24, 63, 42, 0.12), transparent 20%),
     linear-gradient(180deg, #fff8ed 0%, #f7efe4 100%);
 }
+
+/* Faixa de fotos do produto: desliza com o dedo, sem a barra de rolagem aparecendo. */
+.sem-barra {
+  scrollbar-width: none;
+}
+.sem-barra::-webkit-scrollbar {
+  display: none;
+}
