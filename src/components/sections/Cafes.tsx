@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { item, toque } from "@/components/item";
+import { item, itemCarrossel, toque } from "@/components/item";
 import { Revelar } from "@/components/Revelar";
+import { CarrosselCafes } from "@/components/sections/CarrosselCafes";
 import { buscarProduto } from "@/data/produtos";
 import { foto as fotoDe, type NomeFoto } from "@/lib/foto";
 import { formatarMoeda } from "@/lib/pedido";
@@ -121,24 +122,29 @@ function CartaoCafe({ cartao }: { cartao: Cartao }) {
 
 export function Cafes() {
   return (
-    <section id="cafes" className="surface scroll-mt-16 px-5 py-16 sm:px-8 sm:py-24 lg:px-10">
-      <div className="mx-auto max-w-7xl">
+    <section id="cafes" className="cafes-secao scroll-mt-16 pt-16 sm:pt-24">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <Revelar className="max-w-3xl">
-          <p data-item className={`text-xs font-bold uppercase tracking-[.22em] text-minastra-brown ${item}`}>Escolha pelo seu paladar</p>
-          <h2 data-item className={`mt-4 font-display text-4xl font-bold leading-tight tracking-[-.025em] sm:text-6xl sm:leading-none ${item}`}>Um Minastra para cada momento.</h2>
-          <p data-item className={`mt-5 max-w-2xl text-base leading-7 text-minastra-brown/75 sm:text-lg ${item}`}>
+          <p data-item className={`text-xs font-bold uppercase tracking-[.22em] text-minastra-gold ${item}`}>Escolha pelo seu paladar</p>
+          <h2 data-item className={`mt-4 font-display text-4xl font-bold leading-tight tracking-[-.025em] text-minastra-paper sm:text-6xl sm:leading-none ${item}`}>Um Minastra para cada momento.</h2>
+          <p data-item className={`mt-5 max-w-2xl text-base leading-7 text-minastra-paper/75 sm:text-lg ${item}`}>
             Perfis claros, compra rápida e café fresco. Selecione o que combina com você.
           </p>
         </Revelar>
-
-        <Revelar className="mt-10 grid gap-6 md:grid-cols-3">
-          {CARTOES.map((cartao) => (
-            <div key={cartao.id} data-item className={item}>
-              <CartaoCafe cartao={cartao} />
-            </div>
-          ))}
-        </Revelar>
       </div>
+
+      {/* Celular: carrossel com encaixe (deslizar de lado). Computador: os cards atravessam o "CAFÉ". */}
+      <CarrosselCafes total={CARTOES.length}>
+        <Revelar className="cafes-revelar">
+          <div data-trilho="" className="cafes-trilho">
+            {CARTOES.map((cartao) => (
+              <div key={cartao.id} data-item className={`cafes-card ${itemCarrossel}`}>
+                <CartaoCafe cartao={cartao} />
+              </div>
+            ))}
+          </div>
+        </Revelar>
+      </CarrosselCafes>
     </section>
   );
 }

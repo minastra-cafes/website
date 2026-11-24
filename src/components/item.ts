@@ -9,5 +9,9 @@ export const item =
 export const itemLateral =
   "motion-safe:transition-[opacity,translate] motion-safe:duration-[700ms] motion-safe:ease-saida motion-safe:escondido:translate-x-6 motion-safe:escondido:opacity-0";
 
+// Os cafés chegam pela direita, um após o outro, inclinados, e assentam (carrossel da seção Cafés).
+export const itemCarrossel =
+  "motion-safe:transition-[opacity,translate,rotate] motion-safe:duration-[900ms] motion-safe:ease-saida motion-safe:escondido:translate-x-[60vw] motion-safe:escondido:rotate-6 motion-safe:escondido:opacity-0";
+
 // Afunda levemente ao toque: no celular não há hover, e isso mostra que o elemento respondeu.
 export const toque = "motion-safe:active:scale-[0.98]";

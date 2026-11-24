@@ -148,3 +148,120 @@ button:not(:disabled),
     scale: 1.08;
   }
 }
+
+/* Cafés: palco verde-escuro (o verde do cafezal) com "CAFÉ" dourado inteiro em cima e a fila de cards embaixo.
+   Com o palco preso ([data-preso], CarrosselCafes) a rolagem move a fila; sem ele ("reduzir movimento"),
+   o celular tem um carrossel nativo de rolar de lado e o computador mostra os cards parados, centrados. */
+.cafes-palco {
+  display: flex;
+  min-height: calc(100svh - 4rem);
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.75rem;
+  padding-block: 1.5rem;
+  overflow-x: clip;
+  /* o brilho dourado atrás do "CAFÉ"; o verde vem da seção inteira (.cafes-secao) */
+  background: radial-gradient(ellipse 70% 45% at 50% 18%, rgba(211, 170, 92, 0.22), transparent 70%);
+}
+
+/* a seção inteira é verde: título, "CAFÉ" e cards num bloco só */
+.cafes-secao {
+  background-color: var(--color-minastra-leaf);
+}
+
+.cafes-palavra {
+  margin: 0;
+  text-align: center;
+  font-size: clamp(4.5rem, 24vw, 8rem);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  color: var(--color-minastra-gold);
+  text-shadow: 0 0.06em 0 rgba(0, 0, 0, 0.25);
+  user-select: none;
+  pointer-events: none;
+}
+
+.cafes-trilho {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 1.25rem;
+  padding: 0.5rem 1.25rem 0.75rem;
+  scrollbar-width: none;
+}
+
+.cafes-trilho::-webkit-scrollbar {
+  display: none;
+}
+
+/* preso: a fila não rola sozinha, quem a move é a rolagem da página (translate no CarrosselCafes) */
+[data-preso] .cafes-trilho {
+  width: max-content;
+  overflow: visible;
+  scroll-snap-type: none;
+  will-change: translate;
+}
+
+.cafes-card {
+  flex: none;
+  width: min(82vw, 22rem);
+  scroll-snap-align: center;
+}
+
+/* a foto do card cede em telas baixas para o card inteiro caber no palco */
+.cafes-card img {
+  height: min(18rem, 28svh);
+}
+
+.cafes-pontos {
+  margin-top: -0.25rem;
+}
+
+/* celulares baixos (iPhone SE e afins): palavra e foto menores para o palco caber inteiro, com os pontos */
+@media (max-height: 740px) and (max-width: 1023px) {
+  .cafes-palco {
+    gap: 0.25rem;
+    padding-block: 0.5rem;
+  }
+
+  .cafes-palavra {
+    font-size: min(24vw, 12svh);
+  }
+
+  .cafes-card img {
+    height: 20svh;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cafes-palavra {
+    font-size: clamp(7rem, 11vw, 11rem);
+  }
+
+  .cafes-trilho {
+    width: max-content;
+    margin-inline: auto;
+    gap: 2rem;
+    overflow: visible;
+    padding: 0.5rem 0 1rem;
+  }
+
+  .cafes-card {
+    width: 22rem;
+  }
+
+  /* na travessia os cards chegam inclinados e endireitam ao parar no centro */
+  [data-preso] .cafes-card > a {
+    rotate: calc((1 - var(--p, 1)) * var(--giro, 0deg));
+  }
+
+  .cafes-card:nth-child(odd) {
+    --giro: -7deg;
+  }
+
+  .cafes-card:nth-child(even) {
+    --giro: 7deg;
+  }
+}
