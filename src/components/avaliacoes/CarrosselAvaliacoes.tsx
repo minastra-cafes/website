@@ -147,7 +147,7 @@ export function CarrosselAvaliacoes({ children }: { children: ReactNode }) {
         {children}
       </div>
       {total > 1 && (
-        <div className="mt-5 flex justify-center gap-1" role="group" aria-label="Escolher avaliação">
+        <div className="-mt-1 flex justify-center gap-1" role="group" aria-label="Escolher avaliação">
           {Array.from({ length: total }, (_, i) => (
             <button
               key={i}
