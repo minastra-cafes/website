@@ -1,6 +1,7 @@
 "use client";
 
 import { useConteudo } from "@/components/ConteudoProvider";
+import { ParticulasCafe } from "@/components/ParticulasCafe";
 import { dividirTitulo } from "@/lib/conteudo";
 import { foto } from "@/lib/foto";
 
@@ -36,6 +37,10 @@ export function Inicio() {
         alt="Cafezal Minastra nas montanhas do Sul de Minas"
         className="zoom-lento absolute inset-0 -z-20 h-full w-full object-cover"
       />
+      {/* flores de café caindo: entre a foto (-z-20) e o filtro marrom (-z-10), que as suaviza */}
+      <div className="absolute inset-0 -z-[15]">
+        <ParticulasCafe />
+      </div>
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(37,23,17,.96)_0%,rgba(37,23,17,.82)_48%,rgba(37,23,17,.38)_100%)]" />
       {/* o pé da foto escurece até o tom do café e emenda na faixa de baixo, sem corte seco */}
       <div className="absolute inset-x-0 -bottom-px -z-10 h-32 bg-gradient-to-b from-transparent to-minastra-espresso" />
