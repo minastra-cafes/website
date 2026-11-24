@@ -137,9 +137,6 @@ export function CarrosselCafes({ children, total }: { children: ReactNode; total
   return (
     <div ref={fora} className="relative">
       <div ref={palco} className="cafes-palco sticky top-16">
-        <p aria-hidden="true" className="cafes-palavra font-display font-bold">
-          CAFÉ
-        </p>
         {children}
         <div className="cafes-pontos flex justify-center gap-1 lg:hidden" role="group" aria-label="Escolher café">
           {Array.from({ length: total }, (_, i) => (

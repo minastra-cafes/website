@@ -10,10 +10,6 @@ describe("carrossel dos cafés", () => {
     expect(trilho!.querySelectorAll('a[href^="/produto/"]')).toHaveLength(3);
   });
 
-  it("a palavra CAFÉ do fundo fica fora do leitor de tela", () => {
-    const { getByText } = render(<Cafes />);
-    expect(getByText("CAFÉ")).toHaveAttribute("aria-hidden", "true");
-  });
 
   it("tem um ponto por café, o primeiro marcado, com alvo de toque de 44 px", () => {
     const { getAllByRole } = render(<Cafes />);

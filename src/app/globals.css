@@ -149,7 +149,7 @@ button:not(:disabled),
   }
 }
 
-/* Cafés: palco verde-escuro (o verde do cafezal) com "CAFÉ" dourado inteiro em cima e a fila de cards embaixo.
+/* Cafés: palco verde-escuro (o verde do cafezal) com um brilho dourado atrás da fila de cards.
    Com o palco preso ([data-preso], CarrosselCafes) a rolagem move a fila; sem ele ("reduzir movimento"),
    o celular tem um carrossel nativo de rolar de lado e o computador mostra os cards parados, centrados. */
 .cafes-palco {
@@ -160,26 +160,15 @@ button:not(:disabled),
   gap: 0.75rem;
   padding-block: 1.5rem;
   overflow-x: clip;
-  /* o brilho dourado atrás do "CAFÉ"; o verde vem da seção inteira (.cafes-secao) */
-  background: radial-gradient(ellipse 70% 45% at 50% 18%, rgba(211, 170, 92, 0.22), transparent 70%);
+  /* brilho dourado atrás dos cards, inteiro dentro do palco (sem borda reta); o verde vem da .cafes-secao */
+  background: radial-gradient(ellipse 85% 36% at 50% 46%, rgba(211, 170, 92, 0.2), transparent 72%);
 }
 
-/* a seção inteira é verde: título, "CAFÉ" e cards num bloco só */
+/* a seção inteira é verde: título e cards num bloco só */
 .cafes-secao {
   background-color: var(--color-minastra-leaf);
 }
 
-.cafes-palavra {
-  margin: 0;
-  text-align: center;
-  font-size: clamp(4.5rem, 24vw, 8rem);
-  line-height: 0.9;
-  letter-spacing: 0.02em;
-  color: var(--color-minastra-gold);
-  text-shadow: 0 0.06em 0 rgba(0, 0, 0, 0.25);
-  user-select: none;
-  pointer-events: none;
-}
 
 .cafes-trilho {
   display: flex;
@@ -212,33 +201,22 @@ button:not(:disabled),
 
 /* a foto do card cede em telas baixas para o card inteiro caber no palco */
 .cafes-card img {
-  height: min(18rem, 28svh);
+  height: min(18rem, 34svh);
+}
+
+/* celulares baixos (iPhone SE e afins): foto menor para o card e os pontos caberem no palco */
+@media (max-height: 720px) and (max-width: 1023px) {
+  .cafes-card img {
+    height: 27svh;
+  }
 }
 
 .cafes-pontos {
   margin-top: -0.25rem;
 }
 
-/* celulares baixos (iPhone SE e afins): palavra e foto menores para o palco caber inteiro, com os pontos */
-@media (max-height: 740px) and (max-width: 1023px) {
-  .cafes-palco {
-    gap: 0.25rem;
-    padding-block: 0.5rem;
-  }
-
-  .cafes-palavra {
-    font-size: min(24vw, 12svh);
-  }
-
-  .cafes-card img {
-    height: 20svh;
-  }
-}
 
 @media (min-width: 1024px) {
-  .cafes-palavra {
-    font-size: clamp(7rem, 11vw, 11rem);
-  }
 
   .cafes-trilho {
     width: max-content;

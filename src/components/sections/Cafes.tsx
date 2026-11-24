@@ -133,7 +133,7 @@ export function Cafes() {
         </Revelar>
       </div>
 
-      {/* Celular: carrossel com encaixe (deslizar de lado). Computador: os cards atravessam o "CAFÉ". */}
+      {/* Celular: carrossel com encaixe (deslizar de lado). Computador: os cards atravessam a tela. */}
       <CarrosselCafes total={CARTOES.length}>
         <Revelar className="cafes-revelar">
           <div data-trilho="" className="cafes-trilho">
