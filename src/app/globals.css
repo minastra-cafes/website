@@ -259,3 +259,56 @@ button:not(:disabled),
     --giro: 7deg;
   }
 }
+
+/* Avaliações: carrossel com encaixe. No celular um card por vez, com as bordas do anterior e do próximo
+   (a fila vai até a beira da tela); no computador, três. Quem anda sozinho é o CarrosselAvaliacoes. */
+.avaliacoes-trilho {
+  display: flex;
+  gap: 1rem;
+  margin-inline: -1.25rem;
+  padding: 0.25rem 1.25rem 0.5rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 1.25rem;
+  scrollbar-width: none;
+}
+
+.avaliacoes-trilho::-webkit-scrollbar {
+  display: none;
+}
+
+.avaliacoes-card {
+  flex: none;
+  width: calc(100% - 3rem);
+  scroll-snap-align: start;
+}
+
+.avaliacoes-card > * {
+  height: 100%;
+}
+
+@media (min-width: 640px) {
+  .avaliacoes-trilho {
+    margin-inline: -2rem;
+    padding-inline: 2rem;
+    scroll-padding-inline: 2rem;
+  }
+
+  .avaliacoes-card {
+    width: calc((100% - 1rem) / 2 - 1.5rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .avaliacoes-trilho {
+    gap: 1.25rem;
+    margin-inline: 0;
+    padding-inline: 0;
+    scroll-padding-inline: 0;
+  }
+
+  .avaliacoes-card {
+    width: calc((100% - 2.5rem) / 3);
+  }
+}

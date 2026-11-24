@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { item, toque } from "@/components/item";
 import { Revelar } from "@/components/Revelar";
-import { buscarAvaliacoes, montarLinkAvaliar, temProximaPagina, type AvaliacaoPublica, type PaginaDeAvaliacoes } from "@/lib/azics";
+import { buscarAvaliacoes, montarLinkAvaliar, type AvaliacaoPublica, type PaginaDeAvaliacoes } from "@/lib/azics";
+import { CarrosselAvaliacoes } from "./CarrosselAvaliacoes";
 import { CartaoAvaliacao } from "./CartaoAvaliacao";
 import { Estrelas } from "./Estrelas";
 import { useContagem } from "./useContagem";
@@ -14,16 +15,8 @@ type Props = { slug: string; nomeNegocio: string };
 
 type Estado = { itens: AvaliacaoPublica[]; ultima: PaginaDeAvaliacoes };
 
-// Uma avaliação nova durante a paginação empurra as outras: a página 2 pode repetir a última da 1.
-function juntarSemRepetir(atuais: AvaliacaoPublica[], novas: AvaliacaoPublica[]): AvaliacaoPublica[] {
-  const ids = new Set(atuais.map((avaliacao) => avaliacao.id));
-  return [...atuais, ...novas.filter((avaliacao) => !ids.has(avaliacao.id))];
-}
-
 export function Avaliacoes({ slug, nomeNegocio }: Props) {
   const [estado, setEstado] = useState<Estado | null>(null);
-  const [carregando, setCarregando] = useState(false);
-  const [falhouMais, setFalhouMais] = useState(false);
   const secao = useRef<HTMLElement>(null);
   // Sem IntersectionObserver (só em ambientes de teste hoje), a contagem começa direto.
   const [visivel, setVisivel] = useState(() => typeof IntersectionObserver === "undefined");
@@ -58,18 +51,6 @@ export function Avaliacoes({ slug, nomeNegocio }: Props) {
   if (!estado || estado.itens.length === 0 || estado.ultima.media === null) return null;
 
   const { itens, ultima } = estado;
-
-  async function verMais() {
-    setCarregando(true);
-    const proxima = await buscarAvaliacoes(slug, ultima.pagina + 1);
-    setCarregando(false);
-    if (!proxima) {
-      setFalhouMais(true);
-      return;
-    }
-    setFalhouMais(false);
-    setEstado({ itens: juntarSemRepetir(itens, proxima.itens), ultima: proxima });
-  }
 
   const media = ultima.media ?? 0;
 
@@ -107,24 +88,17 @@ export function Avaliacoes({ slug, nomeNegocio }: Props) {
           </div>
         </div>
 
-        <div className="mt-10 grid gap-5 lg:grid-cols-3">
-          {itens.map((avaliacao) => (
-            <CartaoAvaliacao key={avaliacao.id} avaliacao={avaliacao} />
-          ))}
+        {/* as mais recentes (a primeira página da API, até 10) passando sozinhas, uma por vez */}
+        <div className="mt-10">
+          <CarrosselAvaliacoes>
+            {itens.map((avaliacao) => (
+              <div key={avaliacao.id} className="avaliacoes-card">
+                <CartaoAvaliacao avaliacao={avaliacao} />
+              </div>
+            ))}
+          </CarrosselAvaliacoes>
         </div>
 
-        {(temProximaPagina(ultima) || falhouMais) && (
-          <div className="mt-10 flex justify-center">
-            <button
-              type="button"
-              onClick={verMais}
-              disabled={carregando}
-              className="inline-flex min-h-14 items-center justify-center rounded-full border border-minastra-paper/35 px-7 text-sm font-semibold transition hover:border-minastra-gold hover:text-minastra-gold disabled:opacity-60"
-            >
-              {carregando ? "Carregando…" : falhouMais ? "Tentar de novo" : "Ver mais"}
-            </button>
-          </div>
-        )}
       </div>
     </section>
   );

@@ -1,5 +1,4 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { buscarAvaliacoes, type AvaliacaoPublica, type PaginaDeAvaliacoes } from "@/lib/azics";
 import { Avaliacoes } from "./Avaliacoes";
 
@@ -83,34 +82,18 @@ describe("Avaliacoes", () => {
     expect(screen.getAllByRole("img", { name: "Nota 4,5 de 5" }).length).toBeGreaterThan(0);
   });
 
-  it("o Ver mais junta a próxima página sem repetir avaliação e some no fim", async () => {
-    buscar
-      .mockResolvedValueOnce(pagina({ itens: [avaliacao({ id: 1, nome: "Ana P." })], total: 11 }))
-      .mockResolvedValueOnce(
-        pagina({ pagina: 2, total: 11, itens: [avaliacao({ id: 1, nome: "Ana P." }), avaliacao({ id: 2, nome: "Bruno C." })] }),
-      );
-    renderizar();
+  it("mostra as avaliações da primeira página num carrossel, sem Ver mais", async () => {
+    buscar.mockResolvedValue(
+      pagina({ total: 11, itens: [avaliacao({ id: 1, nome: "Ana P." }), avaliacao({ id: 2, nome: "Bruno C." })] }),
+    );
+    const { container } = renderizar();
     await esperarSecao();
-    await userEvent.click(screen.getByRole("button", { name: "Ver mais" }));
-    expect(buscar).toHaveBeenLastCalledWith("minastra", 2);
-    expect(await screen.findByText("Bruno C.")).toBeInTheDocument();
-    expect(screen.getAllByText("Ana P.")).toHaveLength(1);
+    const carrossel = container.querySelector("[data-carrossel-avaliacoes]")!;
+    expect(carrossel).not.toBeNull();
+    expect(carrossel).toHaveTextContent("Ana P.");
+    expect(carrossel).toHaveTextContent("Bruno C.");
     expect(screen.queryByRole("button", { name: "Ver mais" })).toBeNull();
-  });
-
-  it("se a página 2 falha, mantém as avaliações e oferece tentar de novo", async () => {
-    buscar
-      .mockResolvedValueOnce(pagina({ total: 11 }))
-      .mockResolvedValueOnce(null)
-      .mockResolvedValueOnce(pagina({ pagina: 2, total: 11, itens: [avaliacao({ id: 2, nome: "Bruno C." })] }));
-    renderizar();
-    await esperarSecao();
-    await userEvent.click(screen.getByRole("button", { name: "Ver mais" }));
-    const tentar = await screen.findByRole("button", { name: "Tentar de novo" });
-    expect(screen.getByText("Augusto O.")).toBeInTheDocument();
-    await userEvent.click(tentar);
-    expect(buscar).toHaveBeenLastCalledWith("minastra", 2);
-    expect(await screen.findByText("Bruno C.")).toBeInTheDocument();
+    expect(buscar).toHaveBeenCalledTimes(1);
   });
 
   it("volta para a inicial do nome quando a foto não carrega", async () => {
