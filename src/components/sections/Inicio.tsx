@@ -12,12 +12,6 @@ function separarPalavras(texto: string): string[] {
   return texto.trim().split(/\s+/).filter(Boolean);
 }
 
-const DESTAQUES = [
-  { valor: "100%", rotulo: "Arábica" },
-  { valor: "Sul de Minas", rotulo: "Origem única" },
-  { valor: "Pequenos lotes", rotulo: "Mais frescor" },
-];
-
 export function Inicio() {
   const { titulo, subtitulo } = useConteudo();
   const [inicio, destaque] = dividirTitulo(titulo);
@@ -44,9 +38,9 @@ export function Inicio() {
       />
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(37,23,17,.96)_0%,rgba(37,23,17,.82)_48%,rgba(37,23,17,.38)_100%)]" />
       {/* o pé da foto escurece até o tom do café e emenda na faixa de baixo, sem corte seco */}
-      <div className="absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-b from-transparent to-minastra-espresso" />
+      <div className="absolute inset-x-0 -bottom-px -z-10 h-32 bg-gradient-to-b from-transparent to-minastra-espresso" />
 
-      <div className="mx-auto flex min-h-[calc(92svh-4rem)] max-w-7xl items-center px-5 py-16 sm:px-8 lg:px-10">
+      <div className="mx-auto flex min-h-[calc(92svh-4rem)] max-w-7xl items-center px-5 pb-[18svh] pt-10 sm:px-8 lg:px-10">
         <div className="max-w-3xl">
           <h1
             aria-label={titulo}
@@ -79,14 +73,6 @@ export function Inicio() {
             <a href="#origem" className="motion-safe:active:scale-[0.98] inline-flex min-h-14 items-center justify-center rounded-full border border-minastra-paper/35 px-7 text-sm font-semibold transition hover:border-minastra-gold hover:text-minastra-gold">
               Conhecer a fazenda
             </a>
-          </div>
-          <div className="entrar mt-10 grid max-w-2xl grid-cols-3 gap-3 border-t border-minastra-paper/15 pt-6 text-center sm:text-left" style={{ animationDelay: "500ms" }}>
-            {DESTAQUES.map((destaque) => (
-              <div key={destaque.valor}>
-                <strong className="block font-display text-xl text-minastra-gold sm:text-2xl">{destaque.valor}</strong>
-                <span className="text-xs text-minastra-paper/60">{destaque.rotulo}</span>
-              </div>
-            ))}
           </div>
         </div>
       </div>

@@ -177,13 +177,16 @@ button:not(:disabled),
   content: "";
   position: absolute;
   left: 50%;
-  top: 0;
+  /* começa 2,25rem acima do card e some suave para cima (máscara): o halo envolve o topo do card sem
+     subir até o texto da seção */
+  top: -2.25rem;
   z-index: -1;
   width: min(150vw, 60rem);
-  height: min(80vw, 22rem);
-  /* centro do halo na borda de cima do card */
-  translate: -50% -50%;
-  background: radial-gradient(closest-side, rgba(226, 190, 112, 0.9), rgba(211, 170, 92, 0.4) 45%, rgba(211, 170, 92, 0.12) 75%, transparent);
+  height: 18rem;
+  translate: -50% 0;
+  background: radial-gradient(ellipse 50% 55% at 50% calc(2.25rem + 8px), rgba(226, 190, 112, 0.85), rgba(211, 170, 92, 0.38) 45%, rgba(211, 170, 92, 0.11) 75%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 2.25rem);
+  mask-image: linear-gradient(to bottom, transparent, #000 2.25rem);
   pointer-events: none;
 }
 
