@@ -93,6 +93,9 @@ export function ParticulasCafe() {
 
     const mede = () => {
       const dpr = celular ? 1 : Math.min(window.devicePixelRatio || 1, 2);
+      // a barra de endereço do celular dispara resize ao rolar: recriar o canvas sem o tamanho ter mudado
+      // só apagava e realocava o desenho à toa
+      if (canvas.clientWidth === largura && canvas.clientHeight === altura) return;
       largura = canvas.clientWidth;
       altura = canvas.clientHeight;
       canvas.width = Math.round(largura * dpr);

@@ -205,6 +205,11 @@ button:not(:disabled),
   display: none;
 }
 
+/* preso: a rolagem vertical é do navegador (o gesto de lado o CarrosselCafes trata sem bloquear) */
+[data-preso] {
+  touch-action: pan-y;
+}
+
 /* preso: a fila não rola sozinha, quem a move é a rolagem da página (translate no CarrosselCafes) */
 [data-preso] .cafes-trilho {
   width: max-content;

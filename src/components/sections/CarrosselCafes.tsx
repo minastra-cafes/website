@@ -87,7 +87,8 @@ export function CarrosselCafes({ children, total }: { children: ReactNode; total
       const dx = t.clientX - x0, dy = t.clientY - y0;
       if (lado === null && Math.hypot(dx, dy) > 8) lado = Math.abs(dx) > Math.abs(dy) ? "x" : "y";
       if (lado !== "x" || !dentro()) return;
-      ev.preventDefault();
+      // sem preventDefault: o palco tem touch-action: pan-y, então o navegador não rola de lado sozinho e a
+      // rolagem vertical continua toda com ele (ouvinte passivo, sem segurar a rolagem no toque)
       ultimoX = t.clientX;
       window.scrollTo(0, Math.min(e.topo + e.curso, Math.max(e.topo, s0 - dx)));
     };
@@ -103,15 +104,23 @@ export function CarrosselCafes({ children, total }: { children: ReactNode; total
     };
 
     mede();
-    window.addEventListener("resize", mede);
+    // no celular a barra de endereço some e volta ao rolar e dispara resize mudando só a altura: remedir
+    // ali zerava a fila por um quadro (pulo no meio da travessia). Só remede quando a largura muda.
+    let largura = window.innerWidth;
+    const aoRedimensionar = () => {
+      if (window.innerWidth === largura) return;
+      largura = window.innerWidth;
+      mede();
+    };
+    window.addEventListener("resize", aoRedimensionar);
     reduzido.addEventListener("change", mede);
     telaGrande.addEventListener("change", mede);
     interno.addEventListener("touchstart", inicioToque, { passive: true });
-    interno.addEventListener("touchmove", moveToque, { passive: false });
+    interno.addEventListener("touchmove", moveToque, { passive: true });
     interno.addEventListener("touchend", fimToque);
     return () => {
       desliga();
-      window.removeEventListener("resize", mede);
+      window.removeEventListener("resize", aoRedimensionar);
       reduzido.removeEventListener("change", mede);
       telaGrande.removeEventListener("change", mede);
       interno.removeEventListener("touchstart", inicioToque);
