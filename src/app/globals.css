@@ -149,26 +149,43 @@ button:not(:disabled),
   }
 }
 
-/* Cafés: palco verde-escuro (o verde do cafezal) com um brilho dourado atrás da fila de cards.
+/* Cafés: seção verde-escura (o verde do cafezal) com um brilho dourado atrás do topo do card da vez.
    Com o palco preso ([data-preso], CarrosselCafes) a rolagem move a fila; sem ele ("reduzir movimento"),
    o celular tem um carrossel nativo de rolar de lado e o computador mostra os cards parados, centrados. */
+.cafes-secao {
+  background-color: var(--color-minastra-leaf);
+}
+
 .cafes-palco {
   display: flex;
   min-height: calc(100svh - 4rem);
   flex-direction: column;
   justify-content: center;
-  gap: 0.75rem;
-  padding-block: 1.5rem;
+  gap: 0.5rem;
+  /* respiro curto em cima: é onde o halo dourado aparece acima do card */
+  padding-block: 1.5rem 0.75rem;
   overflow-x: clip;
-  /* brilho dourado atrás dos cards, inteiro dentro do palco (sem borda reta); o verde vem da .cafes-secao */
-  background: radial-gradient(ellipse 85% 36% at 50% 46%, rgba(211, 170, 92, 0.2), transparent 72%);
 }
 
-/* a seção inteira é verde: título e cards num bloco só */
-.cafes-secao {
-  background-color: var(--color-minastra-leaf);
+.cafes-revelar {
+  position: relative;
+  z-index: 1;
 }
 
+/* brilho dourado centrado atrás do topo do card da vez (fica parado; a fila passa por cima) */
+.cafes-revelar::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  z-index: -1;
+  width: min(150vw, 60rem);
+  height: min(80vw, 22rem);
+  /* centro do halo na borda de cima do card */
+  translate: -50% -50%;
+  background: radial-gradient(closest-side, rgba(226, 190, 112, 0.9), rgba(211, 170, 92, 0.4) 45%, rgba(211, 170, 92, 0.12) 75%, transparent);
+  pointer-events: none;
+}
 
 .cafes-trilho {
   display: flex;
@@ -199,25 +216,17 @@ button:not(:disabled),
   scroll-snap-align: center;
 }
 
-/* a foto do card cede em telas baixas para o card inteiro caber no palco */
+/* no celular a foto ocupa a altura que sobra no palco (tela menos menu, texto do card e pontos), então o
+   card preenche o palco e quase não sobra vão em cima e embaixo */
 .cafes-card img {
-  height: min(18rem, 34svh);
-}
-
-/* celulares baixos (iPhone SE e afins): foto menor para o card e os pontos caberem no palco */
-@media (max-height: 720px) and (max-width: 1023px) {
-  .cafes-card img {
-    height: 27svh;
-  }
+  height: clamp(10rem, calc(100svh - 4rem - 25rem), 24rem);
 }
 
 .cafes-pontos {
   margin-top: -0.25rem;
 }
 
-
 @media (min-width: 1024px) {
-
   .cafes-trilho {
     width: max-content;
     margin-inline: auto;
@@ -228,6 +237,10 @@ button:not(:disabled),
 
   .cafes-card {
     width: 22rem;
+  }
+
+  .cafes-card img {
+    height: min(18rem, 34svh);
   }
 
   /* na travessia os cards chegam inclinados e endireitam ao parar no centro */

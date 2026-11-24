@@ -43,6 +43,8 @@ export function Inicio() {
         className="zoom-lento absolute inset-0 -z-20 h-full w-full object-cover"
       />
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(37,23,17,.96)_0%,rgba(37,23,17,.82)_48%,rgba(37,23,17,.38)_100%)]" />
+      {/* o pé da foto escurece até o tom do café e emenda na faixa de baixo, sem corte seco */}
+      <div className="absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-b from-transparent to-minastra-espresso" />
 
       <div className="mx-auto flex min-h-[calc(92svh-4rem)] max-w-7xl items-center px-5 py-16 sm:px-8 lg:px-10">
         <div className="max-w-3xl">
